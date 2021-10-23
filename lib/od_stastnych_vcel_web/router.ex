@@ -18,6 +18,7 @@ defmodule OdStastnychVcelWeb.Router do
     pipe_through :browser
 
     live_session :default do
+      live "/", HomeLive.Index, :index
     end
   end
 

@@ -1,0 +1,11 @@
+{
+  "enignes": {
+    "node": "14.18.1",
+    "npm": "8.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17"
+  }
+}
