@@ -1,6 +1,7 @@
 defmodule OdStastnychVcelWeb.LayoutView do
   use OdStastnychVcelWeb, :view
-  alias Phoenix.LiveView.JS
+
+  alias OdStastnychVcelWeb.Live.Components.Menu
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
