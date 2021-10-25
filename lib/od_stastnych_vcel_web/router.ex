@@ -14,11 +14,11 @@ defmodule OdStastnychVcelWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", OdStastnychVcelWeb do
+  scope "/", OdStastnychVcelWeb.Live do
     pipe_through :browser
 
     live_session :default do
-      live "/", HomeLive.Index, :index
+      live "/", Home.Index, :index
     end
   end
 
