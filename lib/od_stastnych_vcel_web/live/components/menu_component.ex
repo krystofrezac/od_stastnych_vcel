@@ -43,7 +43,10 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
 
   defp menu(assigns) do
     ~H"""
-    <div id="nav-body" class="hidden fixed w-full h-full bg-black bg-opacity-95 flex flex-col justify-center items-center z-40" x-show.transition.origin.top.right="navigation_open">
+    <div 
+      id="nav-body" 
+      class="hidden opacity-0 transition-200 transition-opacity fixed w-full h-full bg-black bg-opacity-95 flex flex-col justify-center items-center z-40" 
+    >
       <h2 class="text-honey pb-8 text-4xl">
         Menu
       </h2>
@@ -81,13 +84,14 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
   end
 
   defp open() do
-    JS.remove_class("hidden", to: "#nav-body")
+    JS.remove_class("hidden", time: 200, to: "#nav-body")
+    |> JS.add_class("transition-100", transition: "opacity-0", time: 0, to: "#nav-body")
     |> JS.add_class("hidden", to: "#nav-open")
     |> JS.remove_class("hidden", to: "#nav-close")
   end
 
   defp close() do
-    JS.add_class("hidden", to: "#nav-body")
+    JS.add_class("hidden", transition: "opacity-0", time: 200, to: "#nav-body")
     |> JS.remove_class("hidden", to: "#nav-open")
     |> JS.add_class("hidden", to: "#nav-close")
   end
