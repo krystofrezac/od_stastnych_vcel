@@ -4,6 +4,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
   alias Phoenix.LiveView.JS
   alias OdStastnychVcelWeb.Router.Helpers, as: Routes
 
+  @spec main(%{socket: %Phoenix.LiveView.Socket{}}) :: %Phoenix.LiveView.Rendered{}
   def main(assigns) do
     ~H"""
     <nav>
