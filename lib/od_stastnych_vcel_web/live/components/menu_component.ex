@@ -18,26 +18,24 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
     <div class="fixed w-full flex justify-end z-50">
       <button 
         id="nav-open"
-        class="rounded-full p-5 bg-menu-blob transform" 
         phx-click={open()} 
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <.with_blob> 
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </.with_blob>
       </button>
       <button 
         id="nav-close" 
-        class="hidden relative rounded-full p-5 bg-menu-blob w-6 h-6" 
+        class="hidden" 
         phx-click={close()}
       >
-        <svg class="top-0 left-0 absolute" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path fill="white" d="M56.4,-17.8C64,4.9,54.6,33.6,33.7,49.5C12.9,65.4,-19.5,68.4,-38.9,54.2C-58.3,40,-64.6,8.5,-55.9,-15.8C-47.3,-40,-23.6,-57,0.4,-57.1C24.4,-57.2,48.9,-40.5,56.4,-17.8Z" transform="translate(100 100)" />
-        </svg>
-        <div class="top-0 left-0 w-full h-full flex justify-center items-center absolute">
+        <.with_blob>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
-        </div>
+        </.with_blob>
       </button>
     </div>
     """
@@ -61,6 +59,24 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
     <span class="text-white text-3xl pb-2">
       <%= @value %>
     </span>
+    """
+  end
+
+  defp with_blob(assigns) do
+    ~H"""
+    <div class="relative flex items-center justify-center w-14 h-14">
+      <div class="absolute top-0 left-0 w-14 h-14 z-0 flex items-center justify-center">
+        <svg
+          viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="white" d="M56.4,-17.8C64,4.9,54.6,33.6,33.7,49.5C12.9,65.4,-19.5,68.4,-38.9,54.2C-58.3,40,-64.6,8.5,-55.9,-15.8C-47.3,-40,-23.6,-57,0.4,-57.1C24.4,-57.2,48.9,-40.5,56.4,-17.8Z" transform="translate(100 100)" />
+        </svg>
+      </div>
+      
+
+      <div class="w-6 h-6 z-10">
+        <%= render_slot(@inner_block) %>
+      </div>
+    </div>
     """
   end
 
