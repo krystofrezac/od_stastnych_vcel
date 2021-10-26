@@ -19,7 +19,8 @@ defmodule OdStastnychVcelWeb.Router do
 
     live_session :default do
       live "/", Home.Index, :index
-      live "/test", Test, :index
+
+      live "/products", Products.Index, :index
     end
   end
 

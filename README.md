@@ -10,6 +10,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## Tools
+- https://www.softr.io/tools/svg-wave-generator
+  - number of verticies is one from left
+  - height minimum
+- https://www.blobmaker.app/
+
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
