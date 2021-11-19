@@ -51,18 +51,20 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
       <h2 class="text-honey pb-8 text-4xl">
         Menu
       </h2>
-      <.menu_link value="Hlavni stranka"/> 
-      <.menu_link value="Produkty"/> 
-      <.menu_link value="Fotografie"/> 
+      <.menu_link value="Hlavni stranka" to={Routes.home_index_path(@socket, :index)}/> 
+      <.menu_link value="Produkty" to={Routes.products_index_path(@socket, :index)}/> 
+      <.menu_link value="Fotografie" to={Routes.products_index_path(@socket, :index)}/> 
     </div>
     """
   end
 
   defp menu_link(assigns) do
     ~H"""
-    <span class="text-white text-3xl pb-2">
-      <%= @value %>
-    </span>
+    <%= live_redirect to: @to do %>
+      <span class="text-white text-3xl pb-2">
+        <%= @value %>
+      </span>
+    <% end %>
     """
   end
 
