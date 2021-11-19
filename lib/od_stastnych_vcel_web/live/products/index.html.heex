@@ -7,14 +7,15 @@
     inverted
   />
   <div class="flex flex-wrap justify-center p-4">
-  <%= for item <- 1..10 do %>
-    <div class="m-4 flex flex-col items-center">
-      <div class="w-24 h-32 bg-honey rounded">
+    <%= for %{id: id, name: name, image: image} <- @products do %>
+    <%= live_redirect to: Routes.product_index_path(@socket, :index, id: id) do %>
+      <div class="m-4 flex flex-col items-center">
+        <img src={image} class="w-24 h-32 rounded object-cover"/>
+        <h3>
+          <%= name %>
+        </h3>
       </div>
-      <h3>
-        Domaci med
-      </h3>
-    </div>
+    <% end %>
   <% end  %>
   </div>
 </section>

@@ -1,10 +1,15 @@
 defmodule OdStastnychVcelWeb.Live.Products.Index do
   use OdStastnychVcelWeb, :live_view
 
+  alias OdStastnychVcel.Products
   alias OdStastnychVcelWeb.Live.Components.Wave
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {
+      :ok,
+      socket
+      |> assign(:products, Products.list_products())
+    }
   end
 end
