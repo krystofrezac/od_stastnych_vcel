@@ -2,7 +2,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Wave do
   use Phoenix.Component
 
   def main(assigns) do
-    svg_class = ["relative -z-10"]
+    svg_class = ["relative -z-10 -mt-px"]
 
     svg_class =
       case(Map.get(assigns, :inverted)) do
