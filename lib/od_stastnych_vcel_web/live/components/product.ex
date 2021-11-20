@@ -17,4 +17,19 @@ defmodule OdStastnychVcelWeb.Live.Components.Product do
     <% end %>
     """
   end
+
+  @spec large_header(%{product: %Product{}}) :: %Phoenix.LiveView.Rendered{}
+  def large_header(assigns) do
+    ~H"""
+    <div class="bg-honey flex flex-col items-center pb-5">
+      <img 
+        src={@product.image}
+        class="h-44 w-32 mt-5 rounded object-cover"
+      />
+      <h1 class="pt-5 font-bold">
+        <%= @product.name %>
+      </h1>
+    </div>
+    """
+  end
 end
