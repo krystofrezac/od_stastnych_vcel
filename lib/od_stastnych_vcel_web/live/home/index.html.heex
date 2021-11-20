@@ -21,14 +21,9 @@
 </section>
 <section>
   <h2 class="pl-5 pt-5">Naše produkty</h2>
-  <div class="overflow-x-auto overflow-y-hidden flex pl-5 pt-5">
-    <%= for item <- 1..10 do %>
-      <div class="flex flex-col items-center mr-5">
-        <div class="w-24 h-32 bg-honey rounded"/>
-          <h3>
-            Domácí med
-          </h3>
-      </div>
+  <div class="overflow-x-auto overflow-y-hidden flex w-fit-content mx-auto pl-5 pt-5">
+    <%= for product <- @products do %>
+      <Product.small product={product} socket={@socket}/>
     <% end %>
   </div>
   <div class="flex justify-center pt-10">

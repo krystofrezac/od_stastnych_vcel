@@ -5,6 +5,12 @@
 
 @tailwind utilities;
 
+@layer utilities{
+  .w-fit-content{
+    width: fit-content;
+  }
+}
+
 @layer base{
   @font-face {
     font-family: Kalam;
