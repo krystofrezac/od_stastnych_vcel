@@ -4,11 +4,15 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
   alias Phoenix.LiveView.JS
   alias OdStastnychVcelWeb.Router.Helpers, as: Routes
 
-  @spec main(%{socket: %Phoenix.LiveView.Socket{}, nav_class: String.t() | nil}) ::
+  @spec main(%{
+          socket: %Phoenix.LiveView.Socket{},
+          class: String.t() | nil,
+          menu_items: list({String.t(), String.t()})
+        }) ::
           %Phoenix.LiveView.Rendered{}
   def main(assigns) do
     ~H"""
-    <nav class={@nav_class}>
+    <nav class={@class}>
       <.buttons {assigns}/>
       <.menu {assigns}/>
     </nav>
@@ -47,25 +51,20 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
     ~H"""
     <div 
       id="nav-body" 
-      class="hidden transition-200 transition-opacity fixed w-full h-full bg-black bg-opacity-95 flex flex-col justify-center items-center z-40 " 
+      class="hidden transition-200 transition-opacity fixed w-full h-full bg-black bg-opacity-95 flex flex-col justify-center items-center z-20 " 
     >
       <h2 class="text-honey pb-8 text-4xl">
         Menu
       </h2>
-      <.menu_link value="Hlavni stranka" to={Routes.home_index_path(@socket, :index)}/> 
-      <.menu_link value="Produkty" to={Routes.products_index_path(@socket, :index)}/> 
-      <.menu_link value="Fotografie" to={Routes.products_index_path(@socket, :index)}/> 
-    </div>
-    """
-  end
 
-  defp menu_link(assigns) do
-    ~H"""
-    <%= live_redirect to: @to do %>
-      <span class="text-white text-3xl pb-2">
-        <%= @value %>
-      </span>
-    <% end %>
+      <%= for {title, link} <- @menu_items do %>
+        <%= live_redirect to: link, class: "mb-2" do %>
+          <span class="text-white text-3xl">
+            <%= title %>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
     """
   end
 
