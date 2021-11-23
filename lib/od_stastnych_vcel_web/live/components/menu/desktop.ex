@@ -9,20 +9,20 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Desktop do
           %Phoenix.LiveView.Rendered{}
   def main(assigns) do
     ~H"""
-    <div class={@class <> " pb-16"}>
-      <nav class="fixed w-full z-10">
-        <div class="bg-honey p-5 flex justify-end z-20 relative">
+    <div class={@class <> " sticky top-0 -mb-2 w-full z-10"}>
+      <div class="bg-honey py-5 z-20 relative">
+        <div class="container m-auto flex justify-end">
           <%= for {title, link} <- @menu_items do %>
             <%= live_redirect to: link do %>
-              <span class="text-xl px-2">
+              <span class="text-xl pl-4">
                 <%= title %>
               </span>
             <% end %>
           <% end %>
         </div>
-        <div class="h-2 w-full" style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);">
-        </div>
-      </nav>
+      </div>
+      <div class="h-2 w-full" style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);">
+      </div>
     </div>
     """
   end

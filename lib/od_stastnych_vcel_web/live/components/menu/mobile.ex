@@ -12,10 +12,10 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
           %Phoenix.LiveView.Rendered{}
   def main(assigns) do
     ~H"""
-    <nav class={@class}>
+    <div class={@class}>
       <.buttons {assigns}/>
       <.menu {assigns}/>
-    </nav>
+    </div>
     """
   end
 
