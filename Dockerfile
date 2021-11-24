@@ -44,21 +44,38 @@ RUN mix deps.compile
 
 COPY priv priv
 
+COPY lib lib
+
 # note: if your project uses a tool like https://purgecss.com/,
 # which customizes asset compilation based on what it finds in
 # your Elixir templates, you will need to move the asset compilation
 # step down so that `lib` is available.
 COPY assets assets
 
-# For Phoenix 1.6 and later, compile assets using esbuild
-RUN mix assets.deploy
+RUN apt update -y && apt upgrade -y 
+RUN apt install -y curl
 
-# For Phoenix versions earlier than 1.6, compile assets npm
-# RUN cd assets && yarn install && yarn run webpack --mode production
-# RUN mix phx.digest
+ENV NVM_VERSION v0.39.0
+ENV NODE_VERSION v14.18.1
+ENV NVM_DIR /usr/local/nvm
+RUN mkdir $NVM_DIR
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | bash
+
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# Hack because npm not found
+RUN echo "source $NVM_DIR/nvm.sh && \
+    nvm install $NODE_VERSION && \
+    nvm alias default $NODE_VERSION && \
+    nvm use default && \
+    npm install -g npm@8.1.1 && \
+    cd assets && npm i && cd .. && \
+    mix assets.deploy" | bash
+
+# ENV npm=". $NVM_DIR/nvm.sh && npm"
 
 # Compile the release
-COPY lib lib
 
 RUN mix compile
 
