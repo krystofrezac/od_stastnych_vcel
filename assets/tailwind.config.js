@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   mode: 'jit',
   purge: [
@@ -8,10 +6,13 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-    colors: {
-      ...colors,
-      honey: "#FFC30B"
+    extend: {
+      screens: {
+        'desktop': '768px',	
+      },
+      colors: {
+        honey: "#FFC30B"
+      }
     },
     fontFamily: {
       kalam: ['Kalam'],

@@ -12,7 +12,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Tools
 - https://www.softr.io/tools/svg-wave-generator
-  - number of verticies is one from left
+  - number of verticies is 2 from left
   - height minimum
 - https://www.blobmaker.app/
 

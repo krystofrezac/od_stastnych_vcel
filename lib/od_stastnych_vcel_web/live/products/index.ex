@@ -4,6 +4,7 @@ defmodule OdStastnychVcelWeb.Live.Products.Index do
   alias OdStastnychVcel.Products
   alias OdStastnychVcelWeb.Live.Components.Wave
   alias OdStastnychVcelWeb.Live.Components.Product
+  alias OdStastnychVcelWeb.Live.Components.Section
 
   @impl true
   def mount(_params, _session, socket) do

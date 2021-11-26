@@ -8,8 +8,8 @@ defmodule OdStastnychVcelWeb.Live.Components.Product do
   def small(assigns) do
     ~H"""
     <%= live_redirect to: Routes.product_index_path(@socket, :index, id: @product.id) do %>
-      <div class="m-4 flex flex-col items-center">
-        <img src={@product.image} class="w-24 h-32 rounded object-cover"/>
+      <div class="m-4 flex flex-col items-center block w-max">
+        <img src={@product.image} class="w-24 h-32 desktop:w-36 desktop:h-48 rounded object-cover"/>
         <h3>
           <%= @product.name %>
         </h3>
@@ -24,7 +24,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Product do
     <div class="bg-honey flex flex-col items-center pb-5">
       <img 
         src={@product.image}
-        class="h-44 w-32 mt-5 rounded object-cover"
+        class="w-36 h-48 desktop:w-60 desktop:h-80 mt-5 rounded object-cover"
       />
       <h1 class="pt-5 font-bold">
         <%= @product.name %>
