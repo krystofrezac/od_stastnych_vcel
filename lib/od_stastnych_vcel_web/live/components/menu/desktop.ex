@@ -10,11 +10,11 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Desktop do
   def main(assigns) do
     ~H"""
     <div class={@class <> " sticky top-0 -mb-2 w-full z-10"}>
-      <div class="bg-honey py-5 z-20 relative">
+      <div class="bg-black bg-opacity-90 py-5 z-20 relative">
         <div class="container m-auto flex justify-end">
           <%= for {title, link} <- @menu_items do %>
             <%= live_redirect to: link do %>
-              <span class="text-xl pl-4">
+              <span class="text-xl pl-4 text-white">
                 <%= title %>
               </span>
             <% end %>
