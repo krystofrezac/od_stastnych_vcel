@@ -2,7 +2,6 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  alias OdStastnychVcelWeb.Router.Helpers, as: Routes
 
   @spec main(%{
           socket: %Phoenix.LiveView.Socket{},
