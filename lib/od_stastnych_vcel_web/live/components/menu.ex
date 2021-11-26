@@ -6,7 +6,8 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
 
   @spec main(%{socket: %Phoenix.LiveView.Socket{}}) :: %Phoenix.LiveView.Rendered{}
   def main(assigns) do
-    menu_items=get_menu_items(assigns.socket)
+    menu_items = get_menu_items(assigns.socket)
+
     ~H"""
     <Mobile.main class="desktop:hidden" menu_items={menu_items} {assigns}/> 
     <Desktop.main class="hidden desktop:block" menu_items={menu_items} {assigns}/> 
