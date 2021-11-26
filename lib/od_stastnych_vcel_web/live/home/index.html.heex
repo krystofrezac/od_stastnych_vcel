@@ -25,7 +25,7 @@
 </Section.main>
 <Section.main>
   <h2 class="pl-5 pt-5">Naše produkty</h2>
-  <div class="overflow-x-auto overflow-y-hidden flex w-fit-content mx-auto pl-5 pt-5">
+  <div class="overflow-x-auto overflow-y-hidden flex desktop:flex-wrap desktop:justify-center w-full pt-5">
     <%= for product <- @products do %>
       <Product.small product={product} socket={@socket}/>
     <% end %>
@@ -44,9 +44,9 @@
   </:top>
   <div class="bg-honey pb-5">
     <h2 class="pl-5 pt-5">Fotogalerie</h2>
-    <div class="overflow-x-auto overflow-y-hidden flex pl-5 pt-5">
-      <%= for item <- 1..10 do %>
-        <div class="w-72 h-36 flex-shrink-0 mr-5 bg-white rounded"/>
+    <div class="overflow-x-auto overflow-y-hidden flex pl-5 pt-5 desktop:flex-wrap desktop:justify-center">
+      <%= for item <- 1..6 do %>
+        <div class="w-72 h-36 flex-shrink-0 mr-5 mb-5 bg-white rounded"/>
       <% end %>
     </div>
     <div class="flex justify-center pt-10">
@@ -62,24 +62,24 @@
     />
   </:bottom>
 </Section.main>
-<section>
-  <h2 class="pl-5 pt-5">Kontakty</h2>
-  <div class="pl-5">
-    <div class="flex items-center pb-4">
+<Section.main>
+  <h2 class="pl-5 pt-5 desktop:pb-10">Kontakty</h2>
+  <div class="pl-5 desktop:flex desktop:flex-wrap desktop:justify-center">
+    <div class="flex items-center pb-4 desktop:pb-10 desktop:mx-10">
       <Icons.at/> 
       <a class="text-xl font-bold pl-2" href="mailto:odstastnychvcel@seznam.cz">odstastnychvcel@seznam.cz</a>
     </div>
-    <div class="flex items-center pb-4">
+    <div class="flex items-center pb-4 desktop:pb-10 desktop:mx-10">
       <Icons.phone/>
       <a class="text-xl font-bold pl-2" href="tel:+420123456789">+420 123 456 789</a>
     </div>
-    <div class="flex items-center pb-4">
+    <div class="flex items-center pb-4 desktop:pb-10 desktop:mx-10">
       <Icons.instagram/>
       <a class="text-xl font-bold pl-2" href="https://instagram.com" target="_blank">@odstastnychvcel</a>
     </div>
-    <div class="flex items-center pb-4">
+    <div class="flex items-center pb-4 desktop:pb-10 desktop:mx-10">
       <Icons.facebook/>
       <a class="text-xl font-bold pl-2" href="https://facebook.com" target="_blank">od-stastnych-vcel</a>
     </div>
   </div>
-</section>
+</Section.main>
