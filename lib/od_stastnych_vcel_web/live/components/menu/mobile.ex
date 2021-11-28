@@ -1,5 +1,5 @@
 defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
-  use Phoenix.Component
+  use OdStastnychVcelWeb, :component
 
   alias Phoenix.LiveView.JS
 
