@@ -33,9 +33,11 @@
     <% end %>
   </div>
   <div class="flex justify-center pt-10">
+    <%= live_redirect to: Routes.products_index_path(@socket, :index) do %>
     <Button.main color={:honey} size={:large}>
        Všechny produkty
     </Button.main>
+    <% end %>
   </div>
 </Section.main>
 <Section.main section_class="pt-5" honey>
