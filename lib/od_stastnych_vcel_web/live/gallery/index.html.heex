@@ -1,3 +1,5 @@
+<Photo.modal open={@opened != nil} photo={@opened} image_props={%{"phx-click-away" => "close"}}/>
+
 <main class="bg-honey flex justify-center pt-5 desktop:pt-16">
   <h1>Fotografie</h1>
 </main>
@@ -9,9 +11,9 @@
     />
   </:top>
   <div class="flex flex-wrap justify-center p-4">
-    <%= for product <- 1..10 do %>
-      <div class="w-72 h-36 bg-gray-100 flex-shrink-0 mr-5 mb-5 rounded"/>
+    <%= for photo <- @photos do %>
+      <Photo.main photo={photo} props={%{"phx-click"=>"open"}}/>
     <% end  %>
   </div>
 </Section.main>
-
+<div phx-click="inc" phx-value-myvar1="val1" phx-value-myvar2="val2">ahoj</div>

@@ -3,19 +3,19 @@ defmodule OdStastnychVcel.Products do
 
   def list_products do
     [
-      %Product{id: 0, name: "a", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 0, name: "Domaci med", image: "images/a.png", description: "ahoj"},
-      %Product{id: 1, name: "Domaci med", image: "images/a.png", description: "hola"}
+      %Product{id: 0, name: "a", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 0, name: "Domaci med", image: "images/i1.png", description: "ahoj"},
+      %Product{id: 1, name: "Domaci med", image: "images/i1.png", description: "hola"}
     ]
   end
 
