@@ -16,7 +16,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
 
   defp get_menu_items(socket) do
     [
-      {"Hlavni stranka", Routes.home_index_path(socket, :index)},
+      {"Hlavní stránka", Routes.home_index_path(socket, :index)},
       {"Produkty", Routes.products_index_path(socket, :index)},
       {"Fotografie", Routes.home_index_path(socket, :index)}
     ]
