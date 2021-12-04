@@ -22,6 +22,9 @@ defmodule OdStastnychVcelWeb.Router do
 
       live "/products", Products.Index, :index
       live "/product", Product.Index, :index
+
+      live "/gallery", Gallery.Index, :index
+      live "/gallery/show", Gallery.Index, :show
     end
   end
 

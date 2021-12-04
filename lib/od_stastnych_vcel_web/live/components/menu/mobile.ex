@@ -20,7 +20,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
 
   defp buttons(assigns) do
     ~H"""
-    <div class="fixed w-full flex justify-end z-30">
+    <div class="fixed w-full flex justify-end z-10">
       <button 
         id="nav-open"
         phx-click={open()} 

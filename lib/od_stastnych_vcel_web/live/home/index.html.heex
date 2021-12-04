@@ -1,4 +1,4 @@
-<main class="bg-cover pb-40" style={"background-image: url(\"#{Routes.static_path(@socket, "/images/home.png")}\")"}>
+<main class="bg-cover pb-40 bg-center" style={"background-image: url(\"#{Routes.static_path(@socket, "/images/home.png")}\")"}>
   <div class="flex justify-center pt-20 desktop:pt-40">
     <div class="rounded-full w-32 h-32 bg-white flex justify-center items-center p-5">
       <img src={Routes.static_path(@socket, "/images/logo.svg")}/>
@@ -33,9 +33,11 @@
     <% end %>
   </div>
   <div class="flex justify-center pt-10">
-    <Button.main color={:honey} size={:large}>
-       Všechny produkty
-    </Button.main>
+    <%= live_redirect to: Routes.products_index_path(@socket, :index) do %>
+      <Button.main color={:honey} size={:large}>
+         Všechny produkty
+      </Button.main>
+    <% end %>
   </div>
 </Section.main>
 <Section.main section_class="pt-5" honey>
@@ -46,15 +48,17 @@
   </:top>
   <div class="bg-honey pb-5">
     <h2 class="pl-5 pt-5">Fotogalerie</h2>
-    <div class="overflow-x-auto overflow-y-hidden flex pl-5 pt-5 desktop:flex-wrap desktop:justify-center">
-      <%= for _item <- 1..6 do %>
-        <div class="w-72 h-36 flex-shrink-0 mr-5 mb-5 bg-white rounded"/>
+    <div class="overflow-x-auto overflow-y-hidden flex px-5 pt-5 desktop:flex-wrap desktop:justify-center">
+      <%= for photo <- @photos do %>
+        <Photo.main photo={photo} socket={@socket} />
       <% end %>
     </div>
     <div class="flex justify-center pt-10">
-      <Button.main size={:large}>
-        Všechny fotografie 
-      </Button.main>
+      <%= live_redirect to: Routes.gallery_index_path(@socket, :index) do %>
+        <Button.main size={:large}>
+          Všechny fotografie 
+        </Button.main>
+      <% end %>
     </div>
   </div>
   <:bottom>
