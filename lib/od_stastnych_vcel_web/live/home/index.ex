@@ -16,7 +16,7 @@ defmodule OdStastnychVcelWeb.Live.Home.Index do
     {
       :ok,
       socket
-      |> assign(:products, Products.list_products())
+      |> assign(:products, Products.list_products_for_home_page())
       |> assign(:photos, Gallery.list_photos_for_home_page())
     }
   end
