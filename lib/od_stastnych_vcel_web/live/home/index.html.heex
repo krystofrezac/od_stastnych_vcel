@@ -34,9 +34,9 @@
   </div>
   <div class="flex justify-center pt-10">
     <%= live_redirect to: Routes.products_index_path(@socket, :index) do %>
-    <Button.main color={:honey} size={:large}>
-       Všechny produkty
-    </Button.main>
+      <Button.main color={:honey} size={:large}>
+         Všechny produkty
+      </Button.main>
     <% end %>
   </div>
 </Section.main>
@@ -54,9 +54,11 @@
       <% end %>
     </div>
     <div class="flex justify-center pt-10">
-      <Button.main size={:large}>
-        Všechny fotografie 
-      </Button.main>
+      <%= live_redirect to: Routes.gallery_index_path(@socket, :index) do %>
+        <Button.main size={:large}>
+          Všechny fotografie 
+        </Button.main>
+      <% end %>
     </div>
   </div>
   <:bottom>

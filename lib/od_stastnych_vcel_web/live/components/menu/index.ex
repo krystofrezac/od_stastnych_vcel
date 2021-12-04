@@ -18,7 +18,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu do
     [
       {"Hlavní stránka", Routes.home_index_path(socket, :index)},
       {"Produkty", Routes.products_index_path(socket, :index)},
-      {"Fotografie", Routes.home_index_path(socket, :index)}
+      {"Fotografie", Routes.gallery_index_path(socket, :index)}
     ]
   end
 end
