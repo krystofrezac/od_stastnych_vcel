@@ -1,7 +1,7 @@
 defmodule OdStastnychVcelWeb.Live.Components.Photo do
   use OdStastnychVcelWeb, :component
 
-alias OdStastnychVcelWeb.Live.Components.Icons
+  alias OdStastnychVcelWeb.Live.Components.Icons
 
   def main(assigns) do
     ~H"""
