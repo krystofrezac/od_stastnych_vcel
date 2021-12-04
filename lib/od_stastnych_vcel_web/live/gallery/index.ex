@@ -18,18 +18,18 @@ defmodule OdStastnychVcelWeb.Live.Gallery.Index do
   end
 
   @impl true
-  def handle_event("open", %{"id" => id}, socket) do
-    {
-      :noreply,
-      socket |> assign(:opened, Gallery.get_photo(String.to_integer(id)))
-    }
+  def handle_params(params, _url, socket) do
+    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  @impl true
-  def handle_event("close", _params, socket) do
-    {
-      :noreply,
-      socket |> assign(:opened, nil)
-    }
+  defp apply_action(socket, :index, _params) do
+    socket
+    |> assign(:action, :index)
+  end
+
+  defp apply_action(socket, :show, %{"id" => id}) do
+    socket
+    |> assign(:action, :show)
+    |> assign(:photo, Gallery.get_photo(String.to_integer(id)))
   end
 end

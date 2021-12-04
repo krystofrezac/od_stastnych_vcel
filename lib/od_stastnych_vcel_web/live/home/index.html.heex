@@ -48,9 +48,9 @@
   </:top>
   <div class="bg-honey pb-5">
     <h2 class="pl-5 pt-5">Fotogalerie</h2>
-    <div class="overflow-x-auto overflow-y-hidden flex pl-5 pt-5 desktop:flex-wrap desktop:justify-center">
-      <%= for _item <- 1..6 do %>
-        <div class="w-72 h-36 flex-shrink-0 mr-5 mb-5 bg-white rounded"/>
+    <div class="overflow-x-auto overflow-y-hidden flex px-5 pt-5 desktop:flex-wrap desktop:justify-center">
+      <%= for photo <- @photos do %>
+        <Photo.main photo={photo} socket={@socket} />
       <% end %>
     </div>
     <div class="flex justify-center pt-10">

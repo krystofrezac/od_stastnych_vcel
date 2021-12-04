@@ -1,4 +1,6 @@
-<Photo.modal open={@opened != nil} photo={@opened} image_props={%{"phx-click-away" => "close"}}/>
+<%= if @action == :show do %>
+  <Photo.modal photo={@photo} socket={@socket} />
+<% end %>
 
 <main class="bg-honey flex justify-center pt-5 desktop:pt-16">
   <h1>Fotografie</h1>
@@ -12,7 +14,7 @@
   </:top>
   <div class="flex flex-wrap justify-center p-4">
     <%= for photo <- @photos do %>
-      <Photo.main photo={photo} props={%{"phx-click"=>"open"}}/>
+      <Photo.main photo={photo} socket={@socket} />
     <% end  %>
   </div>
 </Section.main>
