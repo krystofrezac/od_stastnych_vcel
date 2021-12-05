@@ -1,8 +1,14 @@
 defmodule OdStastnychVcelWeb.Live.Components.Photo do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :component
+
+  alias OdStastnychVcel.Schemas.Photo
 
   alias OdStastnychVcelWeb.Live.Components.Icons
 
+  @spec main(%{photo: Photo.t(), socket: Phoenix.LiveView.Socket.t()}) ::
+          Phoenix.LiveView.Rendered.t()
   def main(assigns) do
     ~H"""
     <div class="px-2 mb-5 min-w-max">
@@ -17,6 +23,8 @@ defmodule OdStastnychVcelWeb.Live.Components.Photo do
     """
   end
 
+  @spec modal(%{photo: Photo.t(), socket: Phoenix.LiveView.Socket.t()}) ::
+          Phoenix.LiveView.Rendered.t()
   def modal(assigns) do
     ~H"""
     <div class={"fixed top-0 left-0 w-screen h-screen bg-black z-20 flex justify-center items-center p-20"}>

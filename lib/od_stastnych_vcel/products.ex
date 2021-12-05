@@ -1,6 +1,9 @@
 defmodule OdStastnychVcel.Products do
+  @moduledoc false
+
   alias OdStastnychVcel.Schemas.Product
 
+  @spec list_products() :: list(Product.t())
   def list_products do
     [
       %Product{id: 0, name: "a", image: "images/i1.png", description: "ahoj", home_page: true},
@@ -91,11 +94,13 @@ defmodule OdStastnychVcel.Products do
     ]
   end
 
+  @spec get_product(integer()) :: Product.t()
   def get_product(id) do
     Enum.find(list_products(), fn product -> product.id == id end)
   end
 
-  def list_products_for_home_page() do
+  @spec list_products_for_home_page() :: list(Product.t())
+  def list_products_for_home_page do
     Enum.filter(list_products(), fn product -> product.home_page end)
   end
 end

@@ -1,8 +1,11 @@
 defmodule OdStastnychVcelWeb.Live.Components.Button do
+  @moduledoc false
+
   use Phoenix.Component
 
+  @spec main(%{inner_block: any()}) :: Phoenix.LiveView.Rendered.t()
   def main(assigns) do
-    class = getClasses(assigns)
+    class = get_classes(assigns)
 
     ~H"""
     <button class={class}>
@@ -11,21 +14,21 @@ defmodule OdStastnychVcelWeb.Live.Components.Button do
     """
   end
 
-  defp getClasses(assigns) do
-    class = ["p-2 rounded"]
+  defp get_classes(assigns) do
+    class! = ["p-2 rounded"]
 
-    class =
+    class! =
       case Map.get(assigns, :color) do
-        :honey -> ["bg-honey" | class]
-        _ -> ["bg-white" | class]
+        :honey -> ["bg-honey" | class!]
+        _other -> ["bg-white" | class!]
       end
 
-    class =
+    class! =
       case Map.get(assigns, :size) do
-        :large -> ["text-2xl" | class]
-        _ -> class
+        :large -> ["text-2xl" | class!]
+        _other -> class!
       end
 
-    class
+    class!
   end
 end

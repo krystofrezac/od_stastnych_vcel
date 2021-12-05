@@ -1,10 +1,12 @@
 defmodule OdStastnychVcelWeb.Live.Components.Menu do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :component
 
-  alias OdStastnychVcelWeb.Live.Components.Menu.Mobile
   alias OdStastnychVcelWeb.Live.Components.Menu.Desktop
+  alias OdStastnychVcelWeb.Live.Components.Menu.Mobile
 
-  @spec main(%{socket: %Phoenix.LiveView.Socket{}}) :: %Phoenix.LiveView.Rendered{}
+  @spec main(%{socket: Phoenix.LiveView.Socket.t()}) :: Phoenix.LiveView.Rendered.t()
   def main(assigns) do
     menu_items = get_menu_items(assigns.socket)
 

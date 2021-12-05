@@ -8,7 +8,8 @@
 import Config
 
 config :od_stastnych_vcel,
-  ecto_repos: [OdStastnychVcel.Repo]
+  ecto_repos: [OdStastnychVcel.Repo],
+  env: Config.config_env()
 
 # Configures the endpoint
 config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
