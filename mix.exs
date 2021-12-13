@@ -70,6 +70,12 @@ defmodule OdStastnychVcel.MixProject do
         "cmd --cd assets npm run deploy",
         "esbuild default --minify",
         "phx.digest"
+      ],
+      check: [
+        "compile --warnings-as-errors",
+        "format --check-formatted",
+        "credo",
+        "dialyzer"
       ]
     ]
   end
