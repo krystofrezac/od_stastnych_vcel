@@ -1,13 +1,15 @@
 defmodule OdStastnychVcelWeb.Live.Gallery.Index do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :live_view
 
   alias OdStastnychVcel.Gallery
 
+  alias OdStastnychVcelWeb.Live.Components.Photo
   alias OdStastnychVcelWeb.Live.Components.Section
   alias OdStastnychVcelWeb.Live.Components.Wave
-  alias OdStastnychVcelWeb.Live.Components.Photo
 
-  @impl true
+  @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     {
       :ok,
@@ -17,14 +19,13 @@ defmodule OdStastnychVcelWeb.Live.Gallery.Index do
     }
   end
 
-  @impl true
+  @impl Phoenix.LiveView
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
   defp apply_action(socket, :index, _params) do
-    socket
-    |> assign(:action, :index)
+    assign(socket, :action, :index)
   end
 
   defp apply_action(socket, :show, %{"id" => id}) do

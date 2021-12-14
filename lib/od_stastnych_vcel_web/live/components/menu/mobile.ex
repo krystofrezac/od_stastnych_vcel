@@ -1,14 +1,16 @@
 defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :component
 
   alias Phoenix.LiveView.JS
 
   @spec main(%{
-          socket: %Phoenix.LiveView.Socket{},
+          socket: Phoenix.LiveView.Socket.t(),
           class: String.t() | nil,
           menu_items: list({String.t(), String.t()})
         }) ::
-          %Phoenix.LiveView.Rendered{}
+          Phoenix.LiveView.Rendered.t()
   def main(assigns) do
     ~H"""
     <div class={@class}>
@@ -85,14 +87,14 @@ defmodule OdStastnychVcelWeb.Live.Components.Menu.Mobile do
     """
   end
 
-  defp open() do
+  defp open do
     JS.remove_class("hidden", time: 200, to: "#nav-body")
     |> JS.add_class("transition-200", transition: "opacity-0", time: 0, to: "#nav-body")
     |> JS.add_class("hidden", to: "#nav-open")
     |> JS.remove_class("hidden", to: "#nav-close")
   end
 
-  defp close() do
+  defp close do
     JS.add_class("hidden", transition: "opacity-0", time: 200, to: "#nav-body")
     |> JS.remove_class("hidden", to: "#nav-open")
     |> JS.add_class("hidden", to: "#nav-close")

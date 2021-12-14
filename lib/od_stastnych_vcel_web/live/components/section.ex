@@ -1,11 +1,15 @@
 defmodule OdStastnychVcelWeb.Live.Components.Section do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :component
 
+  @spec main(%{honey: boolean, top: any(), inner_block: any(), bottom: any()}) ::
+          Phoenix.LiveView.Rendered.t()
   def main(assigns) do
     container_wrapper_class =
       case Map.has_key?(assigns, :honey) do
         true -> "bg-honey"
-        _ -> []
+        _other -> []
       end
 
     ~H"""

@@ -32,3 +32,6 @@ od_stastnych_vcel-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Dialyzer
+/priv/plts/*.plt
+/priv/plts/*.plt.hash

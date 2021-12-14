@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Refactor.ModuleDependencies
+
 defmodule OdStastnychVcelWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
@@ -17,16 +19,19 @@ defmodule OdStastnychVcelWeb do
   and import those modules here.
   """
 
+  @spec controller() :: any()
   def controller do
     quote do
       use Phoenix.Controller, namespace: OdStastnychVcelWeb
 
       import Plug.Conn
       import OdStastnychVcelWeb.Gettext
+      # credo:disable-for-next-line Credo.Check.Readability.AliasAs
       alias OdStastnychVcelWeb.Router.Helpers, as: Routes
     end
   end
 
+  @spec view() :: any()
   def view do
     quote do
       use Phoenix.View,
@@ -42,6 +47,7 @@ defmodule OdStastnychVcelWeb do
     end
   end
 
+  @spec live_view() :: any()
   def live_view do
     quote do
       use Phoenix.LiveView,
@@ -51,6 +57,7 @@ defmodule OdStastnychVcelWeb do
     end
   end
 
+  @spec live_component() :: any()
   def live_component do
     quote do
       use Phoenix.LiveComponent
@@ -59,6 +66,7 @@ defmodule OdStastnychVcelWeb do
     end
   end
 
+  @spec component() :: any()
   def component do
     quote do
       use Phoenix.Component
@@ -67,6 +75,7 @@ defmodule OdStastnychVcelWeb do
     end
   end
 
+  @spec router() :: any()
   def router do
     quote do
       use Phoenix.Router
@@ -77,6 +86,7 @@ defmodule OdStastnychVcelWeb do
     end
   end
 
+  @spec channel() :: any()
   def channel do
     quote do
       use Phoenix.Channel
@@ -84,6 +94,7 @@ defmodule OdStastnychVcelWeb do
     end
   end
 
+  @spec view_helpers() :: any()
   defp view_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)
@@ -97,6 +108,7 @@ defmodule OdStastnychVcelWeb do
 
       import OdStastnychVcelWeb.ErrorHelpers
       import OdStastnychVcelWeb.Gettext
+      # credo:disable-for-next-line Credo.Check.Readability.AliasAs
       alias OdStastnychVcelWeb.Router.Helpers, as: Routes
     end
   end

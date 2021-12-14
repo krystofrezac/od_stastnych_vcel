@@ -1,12 +1,15 @@
 defmodule OdStastnychVcelWeb.Telemetry do
+  @moduledoc false
+
   use Supervisor
   import Telemetry.Metrics
 
+  @spec start_link(any()) :: any()
   def start_link(arg) do
     Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
   end
 
-  @impl true
+  @impl Supervisor
   def init(_arg) do
     children = [
       # Telemetry poller will execute the given period measurements
@@ -19,6 +22,7 @@ defmodule OdStastnychVcelWeb.Telemetry do
     Supervisor.init(children, strategy: :one_for_one)
   end
 
+  @spec metrics() :: list()
   def metrics do
     [
       # Phoenix Metrics

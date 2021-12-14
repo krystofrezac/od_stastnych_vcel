@@ -1,6 +1,9 @@
 defmodule OdStastnychVcel.Gallery do
+  @moduledoc false
+
   alias OdStastnychVcel.Schemas.Photo
 
+  @spec list_photos() :: list(Photo.t())
   def list_photos do
     [
       %Photo{id: 0, image: "/images/p1.jpg", home_page: true},
@@ -26,11 +29,13 @@ defmodule OdStastnychVcel.Gallery do
     ]
   end
 
+  @spec get_photo(integer()) :: Photo.t()
   def get_photo(id) do
     Enum.find(list_photos(), fn photo -> photo.id == id end)
   end
 
-  def list_photos_for_home_page() do
+  @spec list_photos_for_home_page() :: list(Photo.t())
+  def list_photos_for_home_page do
     Enum.filter(list_photos(), fn photo -> photo.home_page end)
   end
 end

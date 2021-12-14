@@ -1,6 +1,8 @@
 defmodule OdStastnychVcelWeb.Live.Components.Icons do
+  @moduledoc false
   use Phoenix.Component
 
+  @spec at(%{}) :: Phoenix.LiveView.Rendered.t()
   def at(assigns) do
     ~H"""
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -9,6 +11,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Icons do
     """
   end
 
+  @spec phone(%{}) :: Phoenix.LiveView.Rendered.t()
   def phone(assigns) do
     ~H"""
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,6 +20,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Icons do
     """
   end
 
+  @spec instagram(%{}) :: Phoenix.LiveView.Rendered.t()
   def instagram(assigns) do
     ~H"""
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor">
@@ -25,6 +29,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Icons do
     """
   end
 
+  @spec facebook(%{}) :: Phoenix.LiveView.Rendered.t()
   def facebook(assigns) do
     ~H"""
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,6 +38,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Icons do
     """
   end
 
+  @spec close(%{}) :: Phoenix.LiveView.Rendered.t()
   def close(assigns) do
     ~H"""
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

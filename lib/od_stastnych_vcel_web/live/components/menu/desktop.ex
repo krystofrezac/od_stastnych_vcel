@@ -1,12 +1,14 @@
 defmodule OdStastnychVcelWeb.Live.Components.Menu.Desktop do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :component
 
   @spec main(%{
-          socket: %Phoenix.LiveView.Socket{},
+          socket: Phoenix.LiveView.Socket.t(),
           class: String.t() | nil,
           menu_items: list({String.t(), String.t()})
         }) ::
-          %Phoenix.LiveView.Rendered{}
+          Phoenix.LiveView.Rendered.t()
   def main(assigns) do
     ~H"""
     <div class={@class <> " sticky top-0 -mb-2 w-full z-10"}>

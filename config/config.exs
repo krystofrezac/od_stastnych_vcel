@@ -8,7 +8,8 @@
 import Config
 
 config :od_stastnych_vcel,
-  ecto_repos: [OdStastnychVcel.Repo]
+  ecto_repos: [OdStastnychVcel.Repo],
+  env: Config.config_env()
 
 # Configures the endpoint
 config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
@@ -46,6 +47,9 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :husky,
+  pre_commit: "mix check"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

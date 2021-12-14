@@ -1,14 +1,16 @@
 defmodule OdStastnychVcelWeb.Live.Product.Index do
+  @moduledoc false
+
   use OdStastnychVcelWeb, :live_view
 
   import Ecto.Changeset
 
   alias OdStastnychVcel.Products
 
-  alias OdStastnychVcelWeb.Live.Components.Wave
   alias OdStastnychVcelWeb.Live.Components.Product
+  alias OdStastnychVcelWeb.Live.Components.Wave
 
-  @impl true
+  @impl Phoenix.LiveView
   def mount(params, _session, socket) do
     types = %{id: :integer}
 
@@ -19,8 +21,7 @@ defmodule OdStastnychVcelWeb.Live.Product.Index do
 
     {
       :ok,
-      socket
-      |> assign(:product, Products.get_product(id))
+      assign(socket, :product, Products.get_product(id))
     }
   end
 end

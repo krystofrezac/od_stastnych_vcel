@@ -1,3 +1,5 @@
+# credo:disable-for-this-file Credo.Check.Refactor.ModuleDependencies
+
 defmodule OdStastnychVcelWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :od_stastnych_vcel
 

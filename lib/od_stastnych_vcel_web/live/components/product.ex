@@ -1,10 +1,11 @@
 defmodule OdStastnychVcelWeb.Live.Components.Product do
-  use Phoenix.Component
+  @moduledoc false
+
+  use OdStastnychVcelWeb, :component
 
   alias OdStastnychVcel.Schemas.Product
-  alias OdStastnychVcelWeb.Router.Helpers, as: Routes
 
-  @spec small(%{product: %Product{}}) :: %Phoenix.LiveView.Rendered{}
+  @spec small(%{product: Product.t()}) :: Phoenix.LiveView.Rendered.t()
   def small(assigns) do
     ~H"""
     <%= live_redirect to: Routes.product_index_path(@socket, :index, id: @product.id) do %>
@@ -18,7 +19,7 @@ defmodule OdStastnychVcelWeb.Live.Components.Product do
     """
   end
 
-  @spec large_header(%{product: %Product{}}) :: %Phoenix.LiveView.Rendered{}
+  @spec large_header(%{product: Product.t()}) :: Phoenix.LiveView.Rendered.t()
   def large_header(assigns) do
     ~H"""
     <div class="bg-honey flex flex-col items-center pb-5">
