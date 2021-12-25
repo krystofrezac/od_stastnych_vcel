@@ -10,11 +10,23 @@ defmodule OdStastnychVcelWeb.Live.Components.Photo do
   @spec main(%{photo: Photo.t(), socket: Phoenix.LiveView.Socket.t()}) ::
           Phoenix.LiveView.Rendered.t()
   def main(assigns) do
+    div_class =
+      case Map.get(assigns, :fixed_width, false) do
+        true -> "w-full w-auto desktop:min-w-max desktop:w-auto"
+        false -> "min-w-max w-auto"
+      end
+
+    img_class =
+      case Map.get(assigns, :fixed_width, false) do
+        true -> ""
+        false -> "h-40"
+      end
+
     ~H"""
-    <div class="px-2 mb-5 min-w-max">
+    <div class={"px-2 mb-5 #{div_class}"}>
       <%= live_redirect to: Routes.gallery_index_path(@socket, :show, id: @photo.id) do %>
         <img 
-          class={"h-40 desktop:h-72 desktop:w-auto bg-gray-100 flex-shrink-0 rounded object-cover"}
+          class={"desktop:h-72 desktop:w-auto bg-gray-100 flex-shrink-0 rounded object-cover #{img_class}"}
           src={@photo.image}
           role="button"
         />
