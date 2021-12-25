@@ -9,7 +9,7 @@ defmodule OdStastnychVcel.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      # OdStastnychVcel.Repo,
+      OdStastnychVcel.Repo,
       # Start the Telemetry supervisor
       OdStastnychVcelWeb.Telemetry,
       # Start the PubSub system

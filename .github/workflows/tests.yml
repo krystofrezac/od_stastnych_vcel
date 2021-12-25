@@ -39,5 +39,7 @@ jobs:
     - name: Create Dialyzer PLTs
       if: steps.plt_cache.outputs.cache-hit != 'true'
       run: mix dialyzer --plt
-    - name: Check
+    - name: Run checks
       run: mix check 
+    - name: Run tests
+      run: mix test

@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">   <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
+    <%= render "_user_menu.html", assigns %>
     <%= @inner_content %>
   </body>
 </html>
