@@ -2,8 +2,9 @@ name: Test
 
 on:
   pull_request:
-    branches: [ master ]
-
+    branches:  
+      - master 
+      - development 
 jobs:
   build:
     name: Build and test
