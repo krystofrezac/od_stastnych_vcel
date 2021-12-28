@@ -1,11 +1,11 @@
-defmodule OdStastnychVcel.AccountsTest do
-  use OdStastnychVcel.DataCase
+defmodule Bees.AccountsTest do
+  use Bees.DataCase
 
-  import OdStastnychVcel.AccountsFixtures
+  import Bees.AccountsFixtures
 
-  alias OdStastnychVcel.Accounts
-  alias OdStastnychVcel.Accounts.User
-  alias OdStastnychVcel.Accounts.UserToken
+  alias Bees.Accounts
+  alias Bees.Accounts.User
+  alias Bees.Accounts.UserToken
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

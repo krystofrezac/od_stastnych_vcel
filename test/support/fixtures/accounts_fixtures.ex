@@ -1,10 +1,10 @@
-defmodule OdStastnychVcel.AccountsFixtures do
+defmodule Bees.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `OdStastnychVcel.Accounts` context.
+  entities via the `Bees.Accounts` context.
   """
 
-  alias OdStastnychVcel.Accounts.User
+  alias Bees.Accounts.User
 
   @spec unique_user_email :: String.t()
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -25,7 +25,7 @@ defmodule OdStastnychVcel.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> OdStastnychVcel.Accounts.register_user()
+      |> Bees.Accounts.register_user()
 
     user
   end

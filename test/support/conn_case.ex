@@ -1,4 +1,4 @@
-defmodule OdStastnychVcelWeb.ConnCase do
+defmodule BeesWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,32 +11,32 @@ defmodule OdStastnychVcelWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use OdStastnychVcelWeb.ConnCase, async: true`, although
+  by setting `use BeesWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
   use ExUnit.CaseTemplate
 
+  alias Bees.Accounts.User
   alias Ecto.Adapters.SQL.Sandbox
-  alias OdStastnychVcel.Accounts.User
 
   using do
     quote do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import OdStastnychVcelWeb.ConnCase
+      import BeesWeb.ConnCase
 
       # credo:disable-for-next-line Credo.Check.Readability.AliasAs
-      alias OdStastnychVcelWeb.Router.Helpers, as: Routes
+      alias BeesWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint OdStastnychVcelWeb.Endpoint
+      @endpoint BeesWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = Sandbox.start_owner!(OdStastnychVcel.Repo, shared: not tags[:async])
+    pid = Sandbox.start_owner!(Bees.Repo, shared: not tags[:async])
     on_exit(fn -> Sandbox.stop_owner(pid) end)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
@@ -51,7 +51,7 @@ defmodule OdStastnychVcelWeb.ConnCase do
   """
   @spec register_and_log_in_user(%{conn: Plug.Conn.t()}) :: %{conn: Plug.Conn.t(), user: User.t()}
   def register_and_log_in_user(%{conn: conn}) do
-    user = OdStastnychVcel.AccountsFixtures.user_fixture()
+    user = Bees.AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -62,7 +62,7 @@ defmodule OdStastnychVcelWeb.ConnCase do
   """
   @spec log_in_user(Plug.Conn.t(), User.t()) :: Plug.Conn.t()
   def log_in_user(conn, user) do
-    token = OdStastnychVcel.Accounts.generate_user_session_token(user)
+    token = Bees.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})

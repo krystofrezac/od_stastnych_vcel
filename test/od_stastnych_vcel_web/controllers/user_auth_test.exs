@@ -1,17 +1,17 @@
-defmodule OdStastnychVcelWeb.UserAuthTest do
-  use OdStastnychVcelWeb.ConnCase, async: true
+defmodule BeesWeb.UserAuthTest do
+  use BeesWeb.ConnCase, async: true
 
-  import OdStastnychVcel.AccountsFixtures
+  import Bees.AccountsFixtures
 
-  alias OdStastnychVcel.Accounts
-  alias OdStastnychVcelWeb.UserAuth
+  alias Bees.Accounts
+  alias BeesWeb.UserAuth
 
-  @remember_me_cookie "_od_stastnych_vcel_web_user_remember_me"
+  @remember_me_cookie "_bees_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, OdStastnychVcelWeb.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, BeesWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -66,7 +66,7 @@ defmodule OdStastnychVcelWeb.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      OdStastnychVcelWeb.Endpoint.subscribe(live_socket_id)
+      BeesWeb.Endpoint.subscribe(live_socket_id)
 
       conn
       |> put_session(:live_socket_id, live_socket_id)

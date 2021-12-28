@@ -1,9 +1,9 @@
-defmodule OdStastnychVcelWeb.UserSettingsControllerTest do
-  use OdStastnychVcelWeb.ConnCase, async: true
+defmodule BeesWeb.UserSettingsControllerTest do
+  use BeesWeb.ConnCase, async: true
 
-  import OdStastnychVcel.AccountsFixtures
+  import Bees.AccountsFixtures
 
-  alias OdStastnychVcel.Accounts
+  alias Bees.Accounts
 
   setup :register_and_log_in_user
 

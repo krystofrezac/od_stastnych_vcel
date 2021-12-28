@@ -1,7 +1,7 @@
-defmodule OdStastnychVcelWeb.UserRegistrationControllerTest do
-  use OdStastnychVcelWeb.ConnCase, async: true
+defmodule BeesWeb.UserRegistrationControllerTest do
+  use BeesWeb.ConnCase, async: true
 
-  import OdStastnychVcel.AccountsFixtures
+  import Bees.AccountsFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do

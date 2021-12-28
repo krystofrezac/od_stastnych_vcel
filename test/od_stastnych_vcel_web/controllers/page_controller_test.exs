@@ -1,5 +1,5 @@
-defmodule OdStastnychVcelWeb.PageControllerTest do
-  use OdStastnychVcelWeb.ConnCase
+defmodule BeesWeb.PageControllerTest do
+  use BeesWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     get(conn, "/")

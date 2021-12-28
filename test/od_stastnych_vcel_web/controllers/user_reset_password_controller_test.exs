@@ -1,10 +1,10 @@
-defmodule OdStastnychVcelWeb.UserResetPasswordControllerTest do
-  use OdStastnychVcelWeb.ConnCase, async: true
+defmodule BeesWeb.UserResetPasswordControllerTest do
+  use BeesWeb.ConnCase, async: true
 
-  import OdStastnychVcel.AccountsFixtures
+  import Bees.AccountsFixtures
 
-  alias OdStastnychVcel.Accounts
-  alias OdStastnychVcel.Repo
+  alias Bees.Accounts
+  alias Bees.Repo
 
   setup do
     %{user: user_fixture()}

@@ -1,10 +1,10 @@
 import Config
 
 # Configure your database
-config :od_stastnych_vcel, OdStastnychVcel.Repo,
+config :bees, Bees.Repo,
   username: "postgres",
   password: "postgres",
-  database: "od_stastnych_vcel_dev",
+  database: "bees_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :od_stastnych_vcel, OdStastnychVcel.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
+config :bees, BeesWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -71,13 +71,13 @@ config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
+config :bees, BeesWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/od_stastnych_vcel_web/(live|views)/.*(ex)$",
-      ~r"lib/od_stastnych_vcel_web/templates/.*(eex)$"
+      ~r"lib/bees_web/(live|views)/.*(ex)$",
+      ~r"lib/bees_web/templates/.*(eex)$"
     ]
   ]
 

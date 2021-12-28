@@ -1,9 +1,9 @@
-defmodule OdStastnychVcel.MixProject do
+defmodule Bees.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :od_stastnych_vcel,
+      app: :bees,
       version: "0.1.0",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -22,7 +22,7 @@ defmodule OdStastnychVcel.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {OdStastnychVcel.Application, []},
+      mod: {Bees.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

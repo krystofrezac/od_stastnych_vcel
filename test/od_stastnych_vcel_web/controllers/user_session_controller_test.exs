@@ -1,7 +1,7 @@
-defmodule OdStastnychVcelWeb.UserSessionControllerTest do
-  use OdStastnychVcelWeb.ConnCase, async: true
+defmodule BeesWeb.UserSessionControllerTest do
+  use BeesWeb.ConnCase, async: true
 
-  import OdStastnychVcel.AccountsFixtures
+  import Bees.AccountsFixtures
 
   setup do
     %{user: user_fixture()}
@@ -50,7 +50,7 @@ defmodule OdStastnychVcelWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn!.resp_cookies["_od_stastnych_vcel_web_user_remember_me"]
+      assert conn!.resp_cookies["_bees_web_user_remember_me"]
       assert redirected_to(conn!) == "/"
     end
 

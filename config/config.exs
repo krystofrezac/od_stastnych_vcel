@@ -7,15 +7,15 @@
 # General application configuration
 import Config
 
-config :od_stastnych_vcel,
-  ecto_repos: [OdStastnychVcel.Repo],
+config :bees,
+  ecto_repos: [Bees.Repo],
   env: Config.config_env()
 
 # Configures the endpoint
-config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
+config :bees, BeesWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: OdStastnychVcelWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: OdStastnychVcel.PubSub,
+  render_errors: [view: BeesWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Bees.PubSub,
   live_view: [signing_salt: "qOq4QvuV"]
 
 # Configures the mailer
@@ -25,7 +25,7 @@ config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :od_stastnych_vcel, OdStastnychVcel.Mailer, adapter: Swoosh.Adapters.Local
+config :bees, Bees.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

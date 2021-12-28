@@ -1,4 +1,4 @@
-defmodule OdStastnychVcel.Repo.Migrations.CreateUsersAuthTables do
+defmodule Bees.Repo.Migrations.CreateUsersAuthTables do
   use Ecto.Migration
 
   def change do
