@@ -1,0 +1,52 @@
+<div class="hero h-full pt-20">
+  <div class="hero-content card p-10 shadow-2xl">
+    <h1>Přihlášení</h1>
+
+    <div>
+      <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
+        <%= if @error_message do %>
+          <div class="alert alert-danger">
+            <p><%= @error_message %></p>
+          </div>
+        <% end %>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">
+              Email
+            </span>
+          </label>
+          <%= email_input f, :email, required: true, class: "input input-bordered" %>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">
+              Heslo
+            </span>
+          </label>
+          <%= password_input f, :password, required: true, class: "input input-bordered" %>
+        </div>
+
+
+        <div class="form-control">
+          <label class="label">
+            <span class="cursor-pointer label-text pr-5">
+              Zapamatovat heslo na 60 dní
+            </span>
+            <%= checkbox f, :remember_me, class: "checkbox" %>
+          </label>
+        </div>
+
+        <div class="flex justify-center pt-5">
+          <%= submit "Přihlášení", class: "btn btn-primary btn-block" %>
+        </div>
+      </.form>
+
+      <div class="flex flex-col text-center pt-5">
+        <%= link "Registrovat se", to: Routes.user_registration_path(@conn, :new) %> 
+        <%= link "Zapomněli jste heslo?", to: Routes.user_reset_password_path(@conn, :new) %>
+      </div>
+    </div>
+  </div>
+</div>

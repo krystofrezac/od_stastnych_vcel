@@ -28,8 +28,18 @@ config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     npx: [
       "tailwindcss",
-      "--input=css/app.css",
-      "--output=../priv/static/assets/app.css",
+      "--input=css/public.css",
+      "--output=../priv/static/assets/public.css",
+      "--config=tailwind.public.config.js",
+      "--postcss",
+      "--watch",
+      cd: Path.expand("../assets", __DIR__)
+    ],
+    npx: [
+      "tailwindcss",
+      "--input=css/admin.css",
+      "--output=../priv/static/assets/admin.css",
+      "--config=tailwind.admin.config.js",
       "--postcss",
       "--watch",
       cd: Path.expand("../assets", __DIR__)

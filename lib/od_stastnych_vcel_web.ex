@@ -22,7 +22,19 @@ defmodule OdStastnychVcelWeb do
   @spec controller() :: any()
   def controller do
     quote do
-      use Phoenix.Controller, namespace: OdStastnychVcelWeb
+      use Phoenix.Controller, namespace: OdStastnychVcelWeb.Public
+
+      import Plug.Conn
+      import OdStastnychVcelWeb.Gettext
+      # credo:disable-for-next-line Credo.Check.Readability.AliasAs
+      alias OdStastnychVcelWeb.Router.Helpers, as: Routes
+    end
+  end
+
+  @spec controller_admin() :: any()
+  def controller_admin do
+    quote do
+      use Phoenix.Controller, namespace: OdStastnychVcelWeb.Admin
 
       import Plug.Conn
       import OdStastnychVcelWeb.Gettext
@@ -35,8 +47,24 @@ defmodule OdStastnychVcelWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/od_stastnych_vcel_web/templates",
-        namespace: OdStastnychVcelWeb
+        root: "lib/od_stastnych_vcel_web/templates/public",
+        namespace: OdStastnychVcelWeb.Public
+
+      # Import convenience functions from controllers
+      import Phoenix.Controller,
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
+
+  @spec view_admin() :: any()
+  def view_admin do
+    quote do
+      use Phoenix.View,
+        root: "lib/od_stastnych_vcel_web/templates/admin",
+        namespace: OdStastnychVcelWeb.Admin
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -51,7 +79,17 @@ defmodule OdStastnychVcelWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {OdStastnychVcelWeb.LayoutView, "live.html"}
+        layout: {OdStastnychVcelWeb.Public.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
+  @spec live_view_admin() :: any()
+  def live_view_admin do
+    quote do
+      use Phoenix.LiveView,
+        layout: {OdStastnychVcelWeb.Admin.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -118,5 +156,9 @@ defmodule OdStastnychVcelWeb do
   """
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
+  end
+
+  defmacro __using__(which) when is_list(which) do
+    apply(__MODULE__, String.to_existing_atom(Enum.join(which, "_")), [])
   end
 end

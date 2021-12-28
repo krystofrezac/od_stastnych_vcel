@@ -9,18 +9,25 @@ defmodule OdStastnychVcelWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {OdStastnychVcelWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+  end
+
+  pipeline :public do
+    plug :put_root_layout, {OdStastnychVcelWeb.Public.LayoutView, :root}
+  end
+
+  pipeline :admin do
+    plug :put_root_layout, {OdStastnychVcelWeb.Admin.LayoutView, :root}
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", OdStastnychVcelWeb.Live do
-    pipe_through :browser
+  scope "/", OdStastnychVcelWeb.Public.Live do
+    pipe_through [:browser, :public]
 
     live_session :default do
       live "/", Home.Index, :index
@@ -68,8 +75,8 @@ defmodule OdStastnychVcelWeb.Router do
 
   ## Authentication routes
 
-  scope "/", OdStastnychVcelWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
+  scope "/", OdStastnychVcelWeb.Admin do
+    pipe_through [:browser, :admin, :redirect_if_user_is_authenticated]
 
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
@@ -81,16 +88,16 @@ defmodule OdStastnychVcelWeb.Router do
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
 
-  scope "/", OdStastnychVcelWeb do
-    pipe_through [:browser, :require_authenticated_user]
+  scope "/", OdStastnychVcelWeb.Admin do
+    pipe_through [:browser, :admin, :require_authenticated_user]
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
   end
 
-  scope "/", OdStastnychVcelWeb do
-    pipe_through [:browser]
+  scope "/", OdStastnychVcelWeb.Admin do
+    pipe_through [:browser, :admin]
 
     delete "/users/log_out", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new
