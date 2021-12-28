@@ -6,8 +6,8 @@ defmodule BeesWeb.Public.Live.Home.Index do
   alias Bees.Gallery
   alias Bees.Products
 
+  alias BeesWeb.Live.Components.Icons
   alias BeesWeb.Public.Live.Components.Button
-  alias BeesWeb.Public.Live.Components.Icons
   alias BeesWeb.Public.Live.Components.Photo
   alias BeesWeb.Public.Live.Components.Product
   alias BeesWeb.Public.Live.Components.Section

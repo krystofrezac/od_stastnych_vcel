@@ -89,7 +89,7 @@ defmodule BeesWeb.UserAuth do
     conn
     |> renew_session()
     |> delete_resp_cookie(@remember_me_cookie)
-    |> redirect(to: "/")
+    |> redirect(to: "/users/log_in")
   end
 
   @doc """
@@ -143,7 +143,7 @@ defmodule BeesWeb.UserAuth do
       conn
     else
       conn
-      |> put_flash(:error, "You must log in to access this page.")
+      |> put_flash(:error, "Musíte se nejdříve přihlásit")
       |> maybe_store_return_to()
       |> redirect(to: Routes.user_session_path(conn, :new))
       |> halt()

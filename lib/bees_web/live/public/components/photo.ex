@@ -5,7 +5,7 @@ defmodule BeesWeb.Public.Live.Components.Photo do
 
   alias Bees.Schemas.Photo
 
-  alias BeesWeb.Public.Live.Components.Icons
+  alias BeesWeb.Live.Components.Icons
 
   @spec main(%{photo: Photo.t(), socket: Phoenix.LiveView.Socket.t()}) ::
           Phoenix.LiveView.Rendered.t()

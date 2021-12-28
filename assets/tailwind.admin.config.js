@@ -5,7 +5,12 @@ module.exports = {
     '../lib/*_web/**/*.*ex'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        kalam: ['Kalam'],
+        roboto: ['Roboto']
+      }
+    },
   },
   variants: {
     extend: {},

@@ -11,12 +11,12 @@ module.exports = {
       },
       colors: {
         honey: "#FFC30B"
+      },
+      fontFamily: {
+        kalam: ['Kalam'],
+        roboto: ['Roboto']
       }
     },
-    fontFamily: {
-      kalam: ['Kalam'],
-      roboto: ['Roboto']
-    }
   },
   variants: {
     extend: {},

@@ -21,6 +21,7 @@ defmodule BeesWeb.Admin.Live.UserAuthHook do
       _error ->
         {:halt,
          socket
+         |> LiveView.put_flash(:error, "Musíte se nejdříve přihlásit")
          |> LiveView.redirect(to: Routes.user_session_path(socket, :new))}
     end
   end
