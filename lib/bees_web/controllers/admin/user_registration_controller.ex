@@ -1,5 +1,5 @@
 defmodule BeesWeb.Admin.UserRegistrationController do
-  use BeesWeb, :controller
+  use BeesWeb, [:controller, :admin]
 
   alias Bees.Accounts
   alias Bees.Accounts.User

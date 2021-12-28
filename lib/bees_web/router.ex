@@ -29,7 +29,7 @@ defmodule BeesWeb.Router do
   scope "/", BeesWeb.Public.Live do
     pipe_through [:browser, :public]
 
-    live_session :default do
+    live_session :public do
       live "/", Home.Index, :index
 
       live "/products", Products.Index, :index
@@ -37,6 +37,14 @@ defmodule BeesWeb.Router do
 
       live "/gallery", Gallery.Index, :index
       live "/gallery/show", Gallery.Index, :show
+    end
+  end
+
+  scope "/admin", BeesWeb.Admin.Live do
+    pipe_through [:browser, :admin, :require_authenticated_user]
+
+    live_session :admin, on_mount: BeesWeb.Admin.Live.UserAuthHook do
+      live "/", Dashboard.Index, :index
     end
   end
 

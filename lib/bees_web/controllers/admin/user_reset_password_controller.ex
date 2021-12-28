@@ -1,5 +1,5 @@
 defmodule BeesWeb.Admin.UserResetPasswordController do
-  use BeesWeb, :controller
+  use BeesWeb, [:controller, :admin]
 
   alias Bees.Accounts
 

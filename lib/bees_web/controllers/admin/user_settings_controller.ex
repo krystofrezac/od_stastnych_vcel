@@ -1,5 +1,5 @@
 defmodule BeesWeb.Admin.UserSettingsController do
-  use BeesWeb, :controller
+  use BeesWeb, [:controller, :admin]
 
   alias Bees.Accounts
   alias BeesWeb.UserAuth
