@@ -6,6 +6,7 @@ defmodule BeesWeb.Admin.Live.Account.Index do
   alias BeesWeb.Admin.Live.Components.Card
 
   alias BeesWeb.Admin.Live.Account.EmailChangeComponent
+  alias BeesWeb.Admin.Live.Account.PasswordChangeComponent
 
   @impl Phoenix.LiveView
   def handle_params(_params, url, socket) do

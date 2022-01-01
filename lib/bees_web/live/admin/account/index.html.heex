@@ -22,11 +22,9 @@
     url={Routes.account_index_path(@socket, :index)} 
   />
 
-  <Card.with_shadow class="flex-1 h-fit">
-    <:title>
-      Změna hesla
-    </:title>
-    
-  </Card.with_shadow> 
-
+  <.live_component module={PasswordChangeComponent} 
+    id="password_change" 
+    current_user={@current_user} 
+    url={Routes.account_index_path(@socket, :index)} 
+  />
 </div>

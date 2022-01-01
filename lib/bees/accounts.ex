@@ -226,7 +226,10 @@ defmodule Bees.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  @spec update_user_password(User.t(), String.t(), %{password: String.t()}) ::
+  @spec update_user_password(User.t(), String.t(), %{
+          password: String.t(),
+          password_confirmation: String.t()
+        }) ::
           {:ok, User.t()} | {:error, Ecto.Changeset.t()}
   def update_user_password(user, password, attrs) do
     changeset =

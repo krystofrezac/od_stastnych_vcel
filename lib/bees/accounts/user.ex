@@ -119,12 +119,16 @@ defmodule Bees.Accounts.User do
       validations on a LiveView form), this option can be set to `false`.
       Defaults to `true`.
   """
-  @spec password_changeset(User.t(), %{optional(:password) => String.t()}, hash_password: boolean) ::
+  @spec password_changeset(
+          User.t(),
+          %{optional(:password) => String.t(), optional(:password_confirmation) => String.t()},
+          hash_password: boolean
+        ) ::
           Ecto.Changeset.t()
   def password_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:password])
-    |> validate_confirmation(:password, message: "does not match password")
+    |> validate_confirmation(:password, message: "Hesla se neshodují")
     |> validate_password(opts)
   end
 
