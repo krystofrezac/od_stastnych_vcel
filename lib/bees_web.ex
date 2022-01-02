@@ -148,6 +148,8 @@ defmodule BeesWeb do
       import BeesWeb.Gettext
       # credo:disable-for-next-line Credo.Check.Readability.AliasAs
       alias BeesWeb.Router.Helpers, as: Routes
+
+      import BeesWeb.ViewHelpers
     end
   end
 

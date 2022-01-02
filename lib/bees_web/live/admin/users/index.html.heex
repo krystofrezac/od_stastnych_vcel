@@ -1,1 +1,21 @@
-users
+<Card.with_shadow>
+  <:title left>
+    Uživatelé
+  </:title>
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Datum registrace</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for user <- @users do %>
+        <tr>
+          <td> <%= user.email %> </td>
+          <td> <%= user.inserted_at %> </td>
+        </tr>
+      <% end  %>
+    </tbody>
+  </table>
+</Card.with_shadow>

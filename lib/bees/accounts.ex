@@ -393,4 +393,9 @@ defmodule Bees.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  @spec list_users() :: list(User.t())
+  def list_users do
+    Repo.all(User)
+  end
 end
