@@ -45,7 +45,10 @@ defmodule BeesWeb.Router do
 
     live_session :admin, on_mount: BeesWeb.Admin.Live.UserAuthHook do
       live "/", Dashboard.Index, :index
+
       live "/account", Account.Index, :index
+
+      live "/users", Users.Index, :index
     end
   end
 

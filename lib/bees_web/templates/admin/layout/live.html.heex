@@ -72,12 +72,31 @@
             </span>
           </div>
           <div class="divider my-2"/>
-          <li>
-            <a>Menu Item</a>
-          </li> 
-          <li>
-            <a>Menu Item</a>
-          </li>
+          <%= for {title, icon, link, options} <- menu(@socket) do %>
+
+            <li>
+              <%= if Keyword.get(options,:redirect,false) do 
+                link to: link  do %>
+                  <div class="flex"> 
+                    <%= icon %> 
+                    <div class="pl-5">
+                      <%= title %> 
+                    </div>
+                  </div>
+                <% end
+                else 
+                  link to: link  do %>
+                    <div class="flex"> 
+                      <%= icon %> 
+                      <div class="pl-5">
+                        <%= title %> 
+                      </div>
+                    </div>
+                  <% end
+                end
+              %>
+            </li> 
+          <% end  %>
         </ul>
       </div>
     </div>
