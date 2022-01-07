@@ -1,15 +1,24 @@
-<h1>Forgot your password?</h1>
+<div class="hero h-full pt-20">
+  <div class="hero-content card p-10 shadow-2xl">
+    <h1>Zapomněli jste heslo?</h1>
 
-<.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+    <.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)} class="w-full">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">
+            Email
+          </span>
+        </label>
+        <%= email_input f, :email, required: true, class: "input input-bordered" %>
+      </div>
 
-  <div>
-    <%= submit "Send instructions to reset password" %>
+      <div class="flex justify-center pt-5">
+        <%= submit "Zaslat instrukce pro obnovu hesla", class: "btn btn-primary btn-block" %>
+      </div>
+    </.form>
+
+    <p>
+      <%= link "Přihlásit se", to: Routes.user_session_path(@conn, :new) %>
+    </p>
   </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+</div>

@@ -25,9 +25,9 @@ defmodule BeesWeb.ViewHelpers do
       class_list = Keyword.get(options, key, [])
 
       new_class =
-        case(Keyword.keyword?(class_list) && is_atom(value)) do
+        case(Keyword.keyword?(class_list) && (is_atom(value) || is_binary(value))) do
           true ->
-            Keyword.get(class_list, value, "")
+            Keyword.get(class_list, String.to_existing_atom("#{value}"), "")
 
           false ->
             ""

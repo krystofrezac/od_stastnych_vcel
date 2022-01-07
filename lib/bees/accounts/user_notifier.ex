@@ -85,4 +85,26 @@ defmodule Bees.Accounts.UserNotifier do
     ==============================
     """)
   end
+
+  @doc """
+  Deliver instructions for first login
+  """
+  @spec deliver_registration_instructions(User.t(), String.t(), User.t()) ::
+          {:ok, String.t()} | {:error, any()}
+  def deliver_registration_instructions(user, password, url) do
+    deliver(user.email, "Update email instructions", """
+
+    ==============================
+
+    Byli jste zaregistrováni do systému Od šťastných včel.
+    Pro první přihlášení použijte následující heslo a email.
+    heslo: #{password}
+    email: #{user.email}
+     
+    Heslo si můžete po přihlášení změnit.
+
+    Přihlásit se můžete zde: #{url}
+    ==============================
+    """)
+  end
 end

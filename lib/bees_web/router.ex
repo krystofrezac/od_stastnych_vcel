@@ -67,20 +67,14 @@ defmodule BeesWeb.Router do
   if Application.fetch_env!(:bees, :env) in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: BeesWeb.Telemetry
-    end
-  end
-
-  # Enables the Swoosh mailbox preview in development.
-  #
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
-  if Application.fetch_env!(:bees, :env) == :dev do
     scope "/dev" do
       pipe_through :browser
+      live_dashboard "/dashboard", metrics: BeesWeb.Telemetry
 
+      # Enables the Swoosh mailbox preview in development.
+      #
+      # Note that preview only shows emails that were sent by the same
+      # node running the Phoenix server.
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
@@ -90,8 +84,6 @@ defmodule BeesWeb.Router do
   scope "/", BeesWeb.Admin do
     pipe_through [:browser, :admin, :redirect_if_user_is_authenticated]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
@@ -103,8 +95,6 @@ defmodule BeesWeb.Router do
   scope "/", BeesWeb.Admin do
     pipe_through [:browser, :admin, :require_authenticated_user]
 
-    get "/users/settings", UserSettingsController, :edit
-    put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
   end
 
@@ -112,9 +102,5 @@ defmodule BeesWeb.Router do
     pipe_through [:browser, :admin]
 
     delete "/users/log_out", UserSessionController, :delete
-    get "/users/confirm", UserConfirmationController, :new
-    post "/users/confirm", UserConfirmationController, :create
-    get "/users/confirm/:token", UserConfirmationController, :edit
-    post "/users/confirm/:token", UserConfirmationController, :update
   end
 end

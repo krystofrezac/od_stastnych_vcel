@@ -8,7 +8,7 @@ defmodule BeesWeb.Admin.Live.Components.Form do
   @spec submit(assigns()) :: Phoenix.LiveView.Rendered.t()
   def submit(assigns) do
     ~H"""
-    <%= submit class: "btn btn-outline btn-accent" do %>
+    <%= submit class: "btn btn-primary" do %>
       <%= render_slot(@inner_block) %>
     <% end %>
     """
@@ -46,7 +46,7 @@ defmodule BeesWeb.Admin.Live.Components.Form do
     >
       <label class="label">
         <span class="label-text">
-          <%= @label %>
+          <%= String.capitalize(@label) %>
         </span>
       </label> 
       <%= render_slot(@inner_block) %>

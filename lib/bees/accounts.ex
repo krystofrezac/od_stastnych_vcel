@@ -69,23 +69,33 @@ defmodule Bees.Accounts do
   ## User registration
 
   @doc """
-  Registers a user.
+  Registers a user. And sends him generated password to email.
 
   ## Examples
 
-      iex> register_user(%{field: value})
+      iex> register_user(%{field: value}, "/users/login")
       {:ok, %User{}}
 
-      iex> register_user(%{field: bad_value})
+      iex> register_user(%{field: bad_value}, "/users/login")
       {:error, %Ecto.Changeset{}}
 
   """
-  @spec register_user(%{email: String.t(), password: String.t()}) ::
+  @spec register_user(%{email: String.t()}, String.t()) ::
           {:ok, User.t()} | {:error, Ecto.Changeset.t()}
-  def register_user(attrs) do
-    %User{}
-    |> User.registration_changeset(attrs)
-    |> Repo.insert()
+  @dialyzer {:no_match, register_user: 2}
+  def register_user(attrs, login_url) do
+    password = for _ <- 1..12, into: "", do: <<Enum.random('0123456789abcdef')>>
+
+    attrs = Map.put(attrs, "password", password)
+
+    with {:ok, user} <-
+           %User{}
+           |> User.registration_changeset(attrs)
+           |> Repo.insert(),
+         {:ok, _} <-
+           UserNotifier.deliver_registration_instructions(user, password, login_url) do
+      {:ok, user}
+    end
   end
 
   @doc """
@@ -280,31 +290,6 @@ defmodule Bees.Accounts do
   ## Confirmation
 
   @doc """
-  Delivers the confirmation email instructions to the given user.
-
-  ## Examples
-
-      iex> deliver_user_confirmation_instructions(user, &Routes.user_confirmation_url(conn, :edit, &1))
-      {:ok, %{to: ..., body: ...}}
-
-      iex> deliver_user_confirmation_instructions(confirmed_user, &Routes.user_confirmation_url(conn, :edit, &1))
-      {:error, :already_confirmed}
-
-  """
-  @spec deliver_user_confirmation_instructions(User.t(), (String.t() -> String.t())) ::
-          {:ok, String.t()} | {:error, :already_confirmed | any()}
-  def deliver_user_confirmation_instructions(%User{} = user, confirmation_url_fun)
-      when is_function(confirmation_url_fun, 1) do
-    if user.confirmed_at != nil do
-      {:error, :already_confirmed}
-    else
-      {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
-      Repo.insert!(user_token)
-      UserNotifier.deliver_confirmation_instructions(user, confirmation_url_fun.(encoded_token))
-    end
-  end
-
-  @doc """
   Confirms a user by the given token.
 
   If the token matches, the user account is marked as confirmed
@@ -397,5 +382,10 @@ defmodule Bees.Accounts do
   @spec list_users() :: list(User.t())
   def list_users do
     Repo.all(User)
+  end
+
+  @spec delete_user(User.t()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def delete_user(user) do
+    Repo.delete(user)
   end
 end
