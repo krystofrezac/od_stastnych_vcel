@@ -1,13 +1,10 @@
-<Modal.main id="add_user">
+<Modal.main id="add_user" open={@registering}>
   <:title>
     Přidat uživatele
   </:title>
-  
-
   <p class="alert alert-info my-2">  
-    Zadejte email osoby, kterou chcete přidat do systému. Této osobě bude zaslán email s odkazem na registraci.
+    Zadejte jméno a email osoby, kterou chcete přidat do systému. Této osobě bude zaslán email s odkazem na registraci.
   </p>
-  
   <.form 
     let={f} 
     for={@add_changeset}  
@@ -17,6 +14,11 @@
   >
     <Form.text_input
       form={f}
+      field={:name}
+      label="Jméno"
+    />
+    <Form.text_input
+      form={f}
       field={:email}
       label="email"
     />
@@ -24,8 +26,8 @@
     <Modal.actions>
       <button 
         class="btn" 
-        phx-click={Modal.close()}
         type="button"
+        phx-click="close_registering"
       >
         Zrušit
       </button>
@@ -71,7 +73,7 @@
     Uživatelé
   </:title>
   <:top_actions>
-    <button class="btn btn-sm btn-primary" phx-click={Modal.open("add_user")}>
+    <button class="btn btn-sm btn-primary" phx-click={"add_user"}>
       Přidat uživatele
     </button>
   </:top_actions>
@@ -79,6 +81,7 @@
     <table class="table w-full"> 
       <thead>
         <tr>
+          <th>Jméno</th>
           <th>Email</th>
           <th>Datum registrace</th>
           <th/>
@@ -87,6 +90,7 @@
       <tbody>
         <%= for user <- @users do %>
           <tr>
+            <td> <%= user.name %> </td>
             <td> <%= user.email %> </td>
             <td> <%= user.inserted_at %> </td>
             <td class="text-right"> 

@@ -7,8 +7,10 @@ defmodule BeesWeb.Admin.Live.Components.Form do
 
   @spec submit(assigns()) :: Phoenix.LiveView.Rendered.t()
   def submit(assigns) do
+    click = Map.get(assigns, :"phx-click")
+
     ~H"""
-    <%= submit class: "btn btn-primary" do %>
+    <%= submit class: "btn btn-primary", "phx-click": click do %>
       <%= render_slot(@inner_block) %>
     <% end %>
     """

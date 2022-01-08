@@ -22,12 +22,15 @@ defmodule BeesWeb.ViewHelpers do
     params
     |> Map.to_list()
     |> Enum.reduce(class, fn {key, value}, acc ->
-      class_list = Keyword.get(options, key, [])
+      class_list =
+        Keyword.get(options, key, [])
+        |> Enum.map(fn {key, value} -> {Atom.to_string(key), value} end)
+        |> Enum.into(%{})
 
       new_class =
-        case(Keyword.keyword?(class_list) && (is_atom(value) || is_binary(value))) do
+        case(class_list && (is_atom(value) || is_binary(value))) do
           true ->
-            Keyword.get(class_list, String.to_existing_atom("#{value}"), "")
+            Map.get(class_list, "#{value}", "")
 
           false ->
             ""

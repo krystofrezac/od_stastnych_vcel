@@ -20,6 +20,7 @@ defmodule BeesWeb.Admin.Live.Users.Index do
       socket
       |> assign(:users, Accounts.list_users())
       |> assign(:add_changeset, normalize_add_data())
+      |> assign(:registering, false)
       |> assign(:delete_user, nil)
     }
   end
@@ -77,6 +78,7 @@ defmodule BeesWeb.Admin.Live.Users.Index do
           :noreply,
           socket
           |> put_flash(:info, "Email o registraci úspěšně odeslán")
+          |> assign(:registering, false)
         }
 
       {:error, changeset} ->
@@ -88,11 +90,25 @@ defmodule BeesWeb.Admin.Live.Users.Index do
     end
   end
 
+  @impl Phoenix.LiveView
+  def handle_event("close_registering", _params, socket) do
+    {:noreply,
+     socket
+     |> assign(:registering, false)}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("add_user", _params, socket) do
+    {:noreply,
+     socket
+     |> assign(:registering, true)}
+  end
+
   defp normalize_add_data(params \\ %{}) do
-    types = %{email: :string}
+    types = %{name: :string, email: :string}
 
     {%{}, types}
     |> cast(params, Map.keys(types))
-    |> validate_required([:email])
+    |> validate_required([:name, :email])
   end
 end

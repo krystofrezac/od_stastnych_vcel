@@ -80,7 +80,7 @@ defmodule Bees.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  @spec register_user(%{email: String.t()}, String.t()) ::
+  @spec register_user(%{email: String.t(), name: String.t()}, String.t()) ::
           {:ok, User.t()} | {:error, Ecto.Changeset.t()}
   @dialyzer {:no_match, register_user: 2}
   def register_user(attrs, login_url) do
