@@ -1,6 +1,8 @@
 defmodule BeesWeb.Admin.LayoutView do
   use BeesWeb, [:view, :admin]
 
+  alias BeesWeb.Admin.LayoutView.Flash
+
   alias BeesWeb.Live.Components.Icons
 
   # Phoenix LiveDashboard is available only in development by default,

@@ -23,9 +23,11 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
 import formInputHook from "./hooks/formInput"
+import onMountExecJS from "./hooks/onMountExecJS.js"
 
 let hooks={};
-hooks["form-input"] = formInputHook;
+hooks["form_input"] = formInputHook;
+hooks["on_mount_exec_js"] = onMountExecJS;
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {

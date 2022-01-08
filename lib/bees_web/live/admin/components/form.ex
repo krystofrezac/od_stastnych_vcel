@@ -42,7 +42,7 @@ defmodule BeesWeb.Admin.Live.Components.Form do
     ~H"""
     <div 
       class="form-control" 
-      phx-hook="form-input" 
+      phx-hook="form_input" 
       id={@field} 
       input_name={@form.id<>"[#{@field}]"}
     >
