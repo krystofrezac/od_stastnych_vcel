@@ -16,7 +16,7 @@
           </div> 
           <div class="flex-none">
             <span class="text-lg pr-4">
-              <%= @current_user.email %>
+              <%= @current_user.name %>
             </span>
             <%= live_redirect to: Routes.account_index_path(@socket, :index) do %>
               <button class="btn btn-square btn-ghost">

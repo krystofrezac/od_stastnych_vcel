@@ -5,6 +5,7 @@ defmodule BeesWeb.Admin.Live.Account.Index do
 
   alias BeesWeb.Admin.Live.Components.Card
 
+  alias BeesWeb.Admin.Live.Account.DataChangeComponent
   alias BeesWeb.Admin.Live.Account.EmailChangeComponent
   alias BeesWeb.Admin.Live.Account.PasswordChangeComponent
 

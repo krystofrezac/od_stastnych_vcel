@@ -1,0 +1,28 @@
+<div>
+  <Card.with_shadow class="flex-1 h-fit mt-4">
+    <:title>
+      Změna údajů
+    </:title>
+    
+    <.form 
+      let={f} 
+      for={@changeset}  
+      as="data_change"
+      phx-submit="submit" 
+      phx-change="change"
+      phx-target={@myself}
+    >
+      <Form.text_input
+        form={f}
+        field={:name}
+        label="Jméno"
+      />
+      <Card.actions>
+        <Form.submit>
+          Změnit 
+        </Form.submit>
+      </Card.actions>
+    </.form>
+    
+  </Card.with_shadow>
+</div>

@@ -4,6 +4,7 @@ defmodule Bees.Accounts do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset
 
   alias Bees.Repo
 
@@ -154,6 +155,14 @@ defmodule Bees.Accounts do
     |> User.email_changeset(attrs)
     |> User.validate_current_password(password)
     |> Ecto.Changeset.apply_action(:update)
+  end
+
+  @spec update_user(User.t(), %{name: :string}) ::
+          {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def update_user(user, data) do
+    user
+    |> cast(data, [:name])
+    |> Repo.update()
   end
 
   @doc """

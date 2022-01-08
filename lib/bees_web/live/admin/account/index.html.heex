@@ -1,19 +1,26 @@
 <div class="grid gap-4 md:grid-cols-3">
-  <Card.with_shadow class="flex-1 h-fit">
-    <:title>
-      Uživatel
-    </:title>
-    <table>
-      <tr>
-        <td class="text-left">Jméno:</td>
-        <td class="text-left"><%= @current_user.name %></td>
-      </tr>
-      <tr>
-        <td class="text-left">Email:</td>
-        <td class="text-left"><%= @current_user.email %></td>
-      </tr>
-    </table>
-  </Card.with_shadow>
+  <div>
+    <Card.with_shadow class="flex-1 h-fit">
+      <:title>
+        Uživatel
+      </:title>
+      <table>
+        <tr>
+          <td class="text-left">Jméno:</td>
+          <td class="text-left"><%= @current_user.name %></td>
+        </tr>
+        <tr>
+          <td class="text-left">Email:</td>
+          <td class="text-left"><%= @current_user.email %></td>
+        </tr>
+      </table>
+    </Card.with_shadow>
+    <.live_component module={DataChangeComponent} 
+      id="data_change" 
+      current_user={@current_user} 
+      url={Routes.account_index_path(@socket, :index)} 
+    />
+  </div>
 
   <.live_component module={EmailChangeComponent} 
     id="email_change" 
