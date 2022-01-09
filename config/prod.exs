@@ -3,8 +3,8 @@ import Config
 config :bees, Bees.Mailer,
   templates: %{
     reset_password: "d-a65e59b2073e4873b762c978bb381698",
-    update_email: "d-a65e59b2073e4873b762c978bb381698",
-    registration: "d-a65e59b2073e4873b762c978bb381698"
+    update_email: "d-adf8f0d9171f474fa8f58ccdd3eb866c",
+    registration: "d-7aebbeeff0d14e5d98065816e3ff7047"
   }
 
 # For production, don't forget to configure the url host
