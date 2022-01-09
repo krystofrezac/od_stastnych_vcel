@@ -46,6 +46,16 @@ if config_env() == :prod do
 
   config :bees, BeesWeb.Endpoint, server: true
 
+  sendgrid_key =
+    System.get_env("SENDGRID_KEY") ||
+      raise """
+      environment variable SENDGRID_KEY is missing.
+      """
+
+  config :bees, Bees.Mailer,
+    adapter: Swoosh.Adapters.Sendgrid,
+    api_key: sendgrid_key
+
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

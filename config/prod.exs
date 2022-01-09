@@ -1,5 +1,12 @@
 import Config
 
+config :bees, Bees.Mailer,
+  templates: %{
+    reset_password: "d-a65e59b2073e4873b762c978bb381698",
+    update_email: "d-a65e59b2073e4873b762c978bb381698",
+    registration: "d-a65e59b2073e4873b762c978bb381698"
+  }
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.

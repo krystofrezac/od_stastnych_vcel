@@ -7,39 +7,17 @@ defmodule Bees.Accounts.UserNotifier do
   alias Bees.Mailer
 
   # Delivers the email using the application mailer.
-  defp deliver(recipient, subject, body) do
+  defp deliver(recipient, template, data) do
     email =
       new()
       |> to(recipient)
-      |> from({"MyApp", "contact@example.com"})
-      |> subject(subject)
-      |> text_body(body)
+      |> from({"Od šťastných včel", "krystofrezac@gmail.com"})
+      |> put_provider_option(:dynamic_template_data, data)
+      |> put_provider_option(:template_id, template)
 
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
     end
-  end
-
-  @doc """
-  Deliver instructions to confirm account.
-  """
-  @spec deliver_confirmation_instructions(User.t(), String.t()) ::
-          {:ok, String.t()} | {:error, any()}
-  def deliver_confirmation_instructions(user, url) do
-    deliver(user.email, "Confirmation instructions", """
-
-    ==============================
-
-    Hi #{user.email},
-
-    You can confirm your account by visiting the URL below:
-
-    #{url}
-
-    If you didn't create an account with us, please ignore this.
-
-    ==============================
-    """)
   end
 
   @doc """
@@ -48,20 +26,7 @@ defmodule Bees.Accounts.UserNotifier do
   @spec deliver_reset_password_instructions(User.t(), String.t()) ::
           {:ok, String.t()} | {:error, any()}
   def deliver_reset_password_instructions(user, url) do
-    deliver(user.email, "Reset password instructions", """
-
-    ==============================
-
-    Hi #{user.email},
-
-    You can reset your password by visiting the URL below:
-
-    #{url}
-
-    If you didn't request this change, please ignore this.
-
-    ==============================
-    """)
+    deliver(user.email, Mailer.get_template(:reset_password), %{url: url})
   end
 
   @doc """
@@ -70,20 +35,7 @@ defmodule Bees.Accounts.UserNotifier do
   @spec deliver_update_email_instructions(User.t(), String.t()) ::
           {:ok, String.t()} | {:error, any()}
   def deliver_update_email_instructions(user, url) do
-    deliver(user.email, "Update email instructions", """
-
-    ==============================
-
-    Hi #{user.email},
-
-    You can change your email by visiting the URL below:
-
-    #{url}
-
-    If you didn't request this change, please ignore this.
-
-    ==============================
-    """)
+    deliver(user.email, Mailer.get_template(:update_email), %{url: url})
   end
 
   @doc """
@@ -92,19 +44,10 @@ defmodule Bees.Accounts.UserNotifier do
   @spec deliver_registration_instructions(User.t(), String.t(), User.t()) ::
           {:ok, String.t()} | {:error, any()}
   def deliver_registration_instructions(user, password, url) do
-    deliver(user.email, "Update email instructions", """
-
-    ==============================
-
-    Byli jste zaregistrováni do systému Od šťastných včel.
-    Pro první přihlášení použijte následující heslo a email.
-    heslo: #{password}
-    email: #{user.email}
-     
-    Heslo si můžete po přihlášení změnit.
-
-    Přihlásit se můžete zde: #{url}
-    ==============================
-    """)
+    deliver(user.email, Mailer.get_template(:registration), %{
+      url: url,
+      email: user.email,
+      password: password
+    })
   end
 end
