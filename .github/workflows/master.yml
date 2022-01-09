@@ -1,0 +1,14 @@
+name: Development
+
+on:
+  pull_request:
+    branches:  
+      - master 
+jobs:
+  build:
+    name: Validate branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Triggered by development
+        run: if [[ "$GITHUB_HEAD_REF" == 'development' ]]; then exit 0; else exit 1; fi;
