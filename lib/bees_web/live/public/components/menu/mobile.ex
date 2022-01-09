@@ -22,7 +22,7 @@ defmodule BeesWeb.Public.Live.Components.Menu.Mobile do
 
   defp buttons(assigns) do
     ~H"""
-    <div class="fixed w-full flex justify-end z-10">
+    <div class="fixed w-full flex justify-end z-20">
       <button 
         id="nav-open"
         phx-click={open()} 
@@ -52,7 +52,7 @@ defmodule BeesWeb.Public.Live.Components.Menu.Mobile do
     ~H"""
     <div 
       id="nav-body" 
-      class="hidden transition-200 transition-opacity fixed w-full h-full bg-black bg-opacity-95 flex flex-col justify-center items-center z-20 " 
+      class="hidden transition-200 transition-opacity fixed w-full h-full bg-black bg-opacity-95 flex flex-col justify-center items-center z-10 " 
     >
       <h2 class="text-honey pb-8 text-4xl">
         Menu
@@ -72,7 +72,7 @@ defmodule BeesWeb.Public.Live.Components.Menu.Mobile do
   defp with_blob(assigns) do
     ~H"""
     <div class="relative flex items-center justify-center w-14 h-14">
-      <div class="absolute top-0 left-0 w-14 h-14 z-0 flex items-center justify-center">
+      <div class="absolute top-0 left-0 w-14 h-14 flex items-center justify-center">
         <svg
           viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <path fill="white" d="M56.4,-17.8C64,4.9,54.6,33.6,33.7,49.5C12.9,65.4,-19.5,68.4,-38.9,54.2C-58.3,40,-64.6,8.5,-55.9,-15.8C-47.3,-40,-23.6,-57,0.4,-57.1C24.4,-57.2,48.9,-40.5,56.4,-17.8Z" transform="translate(100 100)" />
