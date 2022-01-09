@@ -11,4 +11,4 @@ jobs:
 
     steps:
       - name: Triggered by development
-        run: echo "$GITHUB_HEAD_REF" && if [[ "$GITHUB_HEAD_REF" == 'development' ]]; then exit 0; else exit 1; fi;
+        run: if [[ "$GITHUB_HEAD_REF" == 'development' ]]; then exit 0; else exit 1; fi;
