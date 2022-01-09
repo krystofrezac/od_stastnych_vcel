@@ -10,14 +10,18 @@ defmodule BeesWeb.Admin.Live.Components.Modal do
   @spec open(nil | String.t()) :: struct()
   def open(id \\ nil) do
     to = get_selector(id)
+
     JS.add_class("modal-open", to: to)
+    |> JS.remove_class("invisible", to: "#{to} > .modal-box")
   end
 
   @spec close() :: struct()
   @spec close(nil | String.t()) :: struct()
   def close(id \\ nil) do
     to = get_selector(id)
+
     JS.remove_class("modal-open", to: to)
+    |> JS.add_class("invisible", to: "#{to} > .modal-box", transition: "_", time: 200)
   end
 
   # Components
@@ -39,10 +43,18 @@ defmodule BeesWeb.Admin.Live.Components.Modal do
         _other -> " modal-open"
       end
 
+    box_class =
+      Map.get(assigns, :open)
+      |> case do
+        nil -> "invisible"
+        false -> "invisible"
+        _other -> ""
+      end
+
     ~H"""
-      <div class={"modal#{open_class}"} id={id}>
+      <div class={"modal#{open_class} visible"} id={id}>
         <div 
-          class="modal-box" 
+          class={"modal-box #{box_class}"} 
           phx-key="Escape" 
           phx-capture-click={on_close}
           phx-window-keydown={on_close}
