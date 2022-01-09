@@ -1,3 +1,3 @@
-defmodule OdStastnychVcelWeb.PageViewTest do
-  use OdStastnychVcelWeb.ConnCase, async: true
+defmodule BeesWeb.PageViewTest do
+  use BeesWeb.ConnCase, async: true
 end

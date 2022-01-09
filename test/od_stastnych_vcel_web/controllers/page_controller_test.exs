@@ -1,8 +1,7 @@
-defmodule OdStastnychVcelWeb.PageControllerTest do
-  use OdStastnychVcelWeb.ConnCase
+defmodule BeesWeb.PageControllerTest do
+  use BeesWeb.ConnCase
 
   test "GET /", %{conn: conn} do
-    conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    get(conn, "/")
   end
 end
