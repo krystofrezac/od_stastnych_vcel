@@ -4,11 +4,14 @@
     "npm": "8.1.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.7"
- },
- "scripts": {
-   "deploy": "NODE_ENV=production tailwindcss --postcss --minify --input=css/app.css --output=../priv/static/assets/app.css"
- }
+    "tailwindcss": "^3.0.12"
+  },
+  "scripts": {
+    "deploy": "NODE_ENV=production tailwindcss --postcss --minify --input=css/public.css --output=../priv/static/assets/public.css --config=tailwind.public.config.js && NODE_ENV=production tailwindcss --postcss --minify --input=css/admin.css --output=../priv/static/assets/admin.css --config=tailwind.admin.config.js"
+  },
+  "dependencies": {
+    "daisyui": "^1.20.0"
+  }
 }

@@ -1,9 +1,9 @@
-defmodule OdStastnychVcel.MixProject do
+defmodule Bees.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :od_stastnych_vcel,
+      app: :bees,
       version: "0.1.0",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -22,7 +22,7 @@ defmodule OdStastnychVcel.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {OdStastnychVcel.Application, []},
+      mod: {Bees.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -36,6 +36,7 @@ defmodule OdStastnychVcel.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:phoenix, "~> 1.6.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
@@ -54,7 +55,8 @@ defmodule OdStastnychVcel.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:husky, "~> 1.0", only: :dev, runtime: false}
+      {:husky, "~> 1.0", only: :dev, runtime: false},
+      {:hackney, "~> 1.18"}
     ]
   end
 

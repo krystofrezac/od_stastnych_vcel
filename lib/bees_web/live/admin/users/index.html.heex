@@ -1,0 +1,108 @@
+<Modal.main id="add_user" open={@registering} on_close="close_registering">
+  <:title>
+    Přidat uživatele
+  </:title>
+  <p class="alert alert-info my-2">  
+    Zadejte jméno a email osoby, kterou chcete přidat do systému. Této osobě bude zaslán email s odkazem na registraci.
+  </p>
+  <.form 
+    let={f} 
+    for={@add_changeset}  
+    as={:add}
+    phx-submit="submit" 
+    phx-change="change"
+  >
+    <Form.text_input
+      form={f}
+      field={:name}
+      label="Jméno"
+    />
+    <Form.text_input
+      form={f}
+      field={:email}
+      label="email"
+    />
+
+    <Modal.actions>
+      <button 
+        class="btn" 
+        type="button"
+        phx-click="close_registering"
+      >
+        Zrušit
+      </button>
+      <Form.submit> 
+          Přidat uživatele
+      </Form.submit>
+    </Modal.actions>
+  </.form>
+  
+</Modal.main>
+
+<Modal.main 
+  id="delete_confirm"
+  open={@delete_user}
+  on_close={"delete_cancel"}
+>
+  <:title>
+    Doopravdy chcete odstranit tohoto uživatele?
+  </:title>
+  <%= if @delete_user do %>
+    <p>
+      Email: <%= @delete_user.email %>
+    </p>
+  <% end %>
+  <Modal.actions>
+    <button 
+      class="btn" 
+      phx-click={"delete_cancel"}
+    >
+      Zrušit
+    </button>
+    <button 
+      class="btn btn-primary"
+      phx-click="delete_confirm"
+    > 
+        Odstranit uživatele
+    </button>
+  </Modal.actions>
+</Modal.main>
+
+<Card.with_shadow>
+  <:title left>
+    Uživatelé
+  </:title>
+  <:top_actions>
+    <button class="btn btn-sm btn-primary" phx-click={"add_user"}>
+      Přidat uživatele
+    </button>
+  </:top_actions>
+  <div class="overflow-x-auto">
+    <table class="table w-full"> 
+      <thead>
+        <tr>
+          <th>Jméno</th>
+          <th>Email</th>
+          <th>Datum registrace</th>
+          <th/>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for user <- @users do %>
+          <tr>
+            <td> <%= user.name %> </td>
+            <td> <%= user.email %> </td>
+            <td> <%= user.inserted_at %> </td>
+            <td class="text-right"> 
+              <Tooltip.main title="Odstranit uzivatele" position="left">
+                <button class="btn btn-square btn-sm btn-outline btn-error" phx-value-user={user.id} phx-click="delete">
+                  <Icons.trash size={:sm}/>
+                </button>
+              </Tooltip.main>
+            </td>
+          </tr>
+        <% end  %>
+      </tbody>
+    </table>
+  </div>
+</Card.with_shadow>
