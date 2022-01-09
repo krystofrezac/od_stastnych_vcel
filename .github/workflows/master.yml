@@ -1,9 +1,9 @@
-name: Development
+name: Master
 
 on:
   pull_request:
-    branches:  
-      - master 
+    branches:
+      - master
 jobs:
   build:
     name: Validate branch
@@ -11,4 +11,4 @@ jobs:
 
     steps:
       - name: Triggered by development
-        run: if [[ "$GITHUB_HEAD_REF" == 'development' ]]; then exit 0; else exit 1; fi;
+        run: echo "$GITHUB_HEAD_REF" && if [[ "$GITHUB_HEAD_REF" == 'development' ]]; then exit 0; else exit 1; fi;

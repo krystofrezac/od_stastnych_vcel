@@ -2,8 +2,8 @@ name: Development
 
 on:
   pull_request:
-    branches:  
-      - development 
+    branches:
+      - development
 jobs:
   build:
     name: Build and test

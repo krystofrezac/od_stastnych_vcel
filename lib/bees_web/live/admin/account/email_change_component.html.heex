@@ -1,0 +1,32 @@
+<div>
+  <Card.with_shadow class="flex-1 h-fit">
+    <:title>
+      Změna emailu
+    </:title> 
+      <.form 
+        let={f} 
+        for={@email_changeset} 
+        as="email_change" 
+        phx-change="email_change"
+        phx-submit="email_submit" 
+        phx-target={@myself}
+      >
+        <Form.text_input 
+          form={f}
+          field={:email}
+          label="Nový email" 
+        />
+        <Form.password_input 
+          form={f}
+          field={:current_password}
+          label="Aktualní heslo" 
+        />
+
+        <Card.actions>
+          <Form.submit>
+            Změnit email
+          </Form.submit>
+        </Card.actions>
+      </.form>
+  </Card.with_shadow>
+</div>

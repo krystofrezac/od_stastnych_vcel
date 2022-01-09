@@ -1,4 +1,4 @@
-defmodule OdStastnychVcelWeb.ChannelCase do
+defmodule BeesWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule OdStastnychVcelWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use OdStastnychVcelWeb.ChannelCase, async: true`, although
+  by setting `use BeesWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -23,15 +23,15 @@ defmodule OdStastnychVcelWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import OdStastnychVcelWeb.ChannelCase
+      import BeesWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint OdStastnychVcelWeb.Endpoint
+      @endpoint BeesWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = Sandbox.start_owner!(OdStastnychVcel.Repo, shared: not tags[:async])
+    pid = Sandbox.start_owner!(Bees.Repo, shared: not tags[:async])
     on_exit(fn -> Sandbox.stop_owner(pid) end)
     :ok
   end

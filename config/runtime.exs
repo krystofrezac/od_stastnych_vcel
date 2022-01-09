@@ -14,9 +14,9 @@ if config_env() == :prod do
       For example: ecto://USER:PASS@HOST/DATABASE
       """
 
-  config :od_stastnych_vcel, OdStastnychVcel.Repo,
-    # ssl: true,
-    # socket_options: [:inet6],
+  config :bees, Bees.Repo,
+    ssl: false,
+    socket_options: [:inet6],
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
@@ -36,7 +36,7 @@ if config_env() == :prod do
     System.get_env("FLY_APP_NAME") ||
       raise "FLY_APP_NAME not available"
 
-  config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint,
+  config :bees, BeesWeb.Endpoint,
     url: [host: "#{app_name}.fly.dev", port: 80],
     http: [
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
@@ -44,14 +44,24 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-  config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint, server: true
+  config :bees, BeesWeb.Endpoint, server: true
+
+  sendgrid_key =
+    System.get_env("SENDGRID_KEY") ||
+      raise """
+      environment variable SENDGRID_KEY is missing.
+      """
+
+  config :bees, Bees.Mailer,
+    adapter: Swoosh.Adapters.Sendgrid,
+    api_key: sendgrid_key
 
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix
   # to start each relevant endpoint:
   #
-  #     config :od_stastnych_vcel, OdStastnychVcelWeb.Endpoint, server: true
+  #     config :bees, BeesWeb.Endpoint, server: true
   #
   # Then you can assemble a release by calling `mix release`.
   # See `mix help release` for more information.
@@ -62,7 +72,7 @@ if config_env() == :prod do
   # Also, you may need to configure the Swoosh API client of your choice if you
   # are not using SMTP. Here is an example of the configuration:
   #
-  #     config :od_stastnych_vcel, OdStastnychVcel.Mailer,
+  #     config :bees, Bees.Mailer,
   #       adapter: Swoosh.Adapters.Mailgun,
   #       api_key: System.get_env("MAILGUN_API_KEY"),
   #       domain: System.get_env("MAILGUN_DOMAIN")
