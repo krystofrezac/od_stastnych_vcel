@@ -9,12 +9,12 @@ defmodule BeesWeb.Admin.UserSettingsController do
       :ok ->
         conn
         |> put_flash(:info, "Email úspěšně změnen")
-        |> redirect(to: Routes.dashboard_index_path(conn, :index))
+        |> redirect(to: Routes.admin_dashboard_index_path(conn, :index))
 
       :error ->
         conn
         |> put_flash(:error, "Odkaz je neplatný nebo vypršela jeho platnost.")
-        |> redirect(to: Routes.dashboard_index_path(conn, :index))
+        |> redirect(to: Routes.admin_dashboard_index_path(conn, :index))
     end
   end
 end

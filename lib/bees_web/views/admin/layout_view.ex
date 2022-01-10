@@ -29,8 +29,9 @@ defmodule BeesWeb.Admin.LayoutView do
     assigns = %{}
 
     [
-      {"Přehled", ~H"<Icons.home/>", Routes.dashboard_index_path(socket, :index)},
-      {"Uživatelé", ~H"<Icons.users/>", Routes.users_index_path(socket, :index)}
+      {"Přehled", ~H"<Icons.home/>", Routes.admin_dashboard_index_path(socket, :index)},
+      {"Uživatelé", ~H"<Icons.users/>", Routes.admin_users_index_path(socket, :index)},
+      {"Produkty", ~H"<Icons.collection/>", Routes.admin_products_index_path(socket, :index)}
     ]
   end
 end

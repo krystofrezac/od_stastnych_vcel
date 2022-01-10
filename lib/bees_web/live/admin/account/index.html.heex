@@ -18,19 +18,19 @@
     <.live_component module={DataChangeComponent} 
       id="data_change" 
       current_user={@current_user} 
-      url={Routes.account_index_path(@socket, :index)} 
+      url={Routes.admin_account_index_path(@socket, :index)} 
     />
   </div>
 
   <.live_component module={EmailChangeComponent} 
     id="email_change" 
     current_user={@current_user} 
-    url={Routes.account_index_path(@socket, :index)} 
+    url={Routes.admin_account_index_path(@socket, :index)} 
   />
 
   <.live_component module={PasswordChangeComponent} 
     id="password_change" 
     current_user={@current_user} 
-    url={Routes.account_index_path(@socket, :index)} 
+    url={Routes.admin_account_index_path(@socket, :index)} 
   />
 </div>

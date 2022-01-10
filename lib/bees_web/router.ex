@@ -40,7 +40,7 @@ defmodule BeesWeb.Router do
     end
   end
 
-  scope "/admin", BeesWeb.Admin.Live do
+  scope "/admin", BeesWeb.Admin.Live, as: :admin do
     pipe_through [:browser, :admin, :require_authenticated_user]
 
     live_session :admin, on_mount: BeesWeb.Admin.Live.UserAuthHook do
@@ -49,6 +49,8 @@ defmodule BeesWeb.Router do
       live "/account", Account.Index, :index
 
       live "/users", Users.Index, :index
+
+      live "/products", Products.Index, :index
     end
   end
 
