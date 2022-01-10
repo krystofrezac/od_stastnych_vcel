@@ -60,7 +60,7 @@
 
   .drawer-content {
     /* Because tailwind cannot do !important */ 
-    @apply sm:z-50 !important
+    @apply lg:z-50 !important
   }
 }
 
