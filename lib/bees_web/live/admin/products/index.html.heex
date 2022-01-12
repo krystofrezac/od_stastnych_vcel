@@ -1,0 +1,80 @@
+<ProductModal.main 
+  open={@add_product}
+  changeset={@add_changeset}
+  action="add"
+  text="Přidat produkt"
+/>
+
+<ProductModal.main 
+  open={@edit_product}
+  changeset={@edit_changeset}
+  action="edit"
+  text="Upravit produkt"
+/>
+
+<Modal.main open={@delete_product}>
+  <:title>
+    Doopravdy chcete odstranit produkt?
+  </:title>
+  <Modal.actions>
+    <button class="btn" phx-click="close_delete_product">
+      Zrušit
+    </button>
+    <button class="btn btn-error" phx-click="submit_delete_product">
+      Odstranit produkt
+    </button>
+  </Modal.actions>
+</Modal.main>
+
+<Card.with_shadow>
+  <:top_actions>
+    <button 
+      class="btn btn-primary btn-sm"
+      phx-click="open_add_product"
+    >
+      Přidat produkt
+    </button>
+  </:top_actions>
+  <:title>
+    Produkty
+  </:title>
+  <Table.main>
+    <thead>
+      <tr>
+        <th>Název</th>
+        <th>Pořadí</th>
+        <th>Zobrazuje se na hlavní stránce</th>
+        <Table.actions_head/>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for product <- @products do %>
+        <tr>
+          <td> <%= product.name %> </td>
+          <td> <%= product.order %> </td>
+          <td> <%= if product.home_page, do: "Ano", else: "Ne" %> </td>
+          <Table.actions>
+            <Table.action 
+              tooltip="Upravit produkt"
+              type="info"
+              icon="pencil"
+              phx-value-product={product.id}
+              phx-click="open_edit_product"
+            >
+              <Icons.pencil />
+            </Table.action>
+            <Table.action 
+              tooltip="Odstrnit produkt"
+              type="error"
+              icon="trash"
+              phx-value-product={product.id}
+              phx-click="open_delete_product"
+            >
+              <Icons.pencil />
+            </Table.action>
+          </Table.actions>
+        </tr>
+      <% end  %>
+    </tbody>
+  </Table.main>
+</Card.with_shadow>

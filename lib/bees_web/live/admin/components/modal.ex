@@ -52,9 +52,9 @@ defmodule BeesWeb.Admin.Live.Components.Modal do
       end
 
     ~H"""
-      <div class={"modal#{open_class} visible"} id={id}>
+      <div class={"modal#{open_class} visible pt-10 sm:pt-0"} id={id}>
         <div 
-          class={"modal-box #{box_class}"} 
+          class={"modal-box #{box_class} max-h-full overflow-y-auto"} 
           phx-key="Escape" 
           phx-capture-click={on_close}
           phx-window-keydown={on_close}

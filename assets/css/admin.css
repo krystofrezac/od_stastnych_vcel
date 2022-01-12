@@ -55,12 +55,12 @@
     @apply text-3xl font-bold pb-3;
   }
   h3 {
-    @apply text-2xl font-bold pb-2
+    @apply text-2xl font-bold pb-2;
   }
 
   .drawer-content {
     /* Because tailwind cannot do !important */ 
-    @apply lg:z-50 !important
+    @apply lg:z-50 !important;
   }
 }
 
