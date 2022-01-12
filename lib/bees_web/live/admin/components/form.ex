@@ -37,6 +37,38 @@ defmodule BeesWeb.Admin.Live.Components.Form do
     """
   end
 
+  @spec number_input(assigns()) :: Phoenix.LiveView.Rendered.t()
+  def number_input(assigns) do
+    ~H"""
+    <.input {assigns}>
+      <%= number_input @form, @field, class: "input input-bordered" %>
+    </.input>
+    """
+  end
+
+  @spec textarea(assigns()) :: Phoenix.LiveView.Rendered.t()
+  def textarea(assigns) do
+    ~H"""
+    <.input {assigns}>
+      <%= textarea @form, @field, class: "textarea textarea-bordered" %>
+    </.input>
+    """
+  end
+
+  @spec checkbox(assigns()) :: Phoenix.LiveView.Rendered.t()
+  def checkbox(assigns) do
+    ~H"""
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">
+          <%= @label %>
+        </span>
+        <%= checkbox @form, @field, class: "checkbox checkbox-checked" %>
+      </label>
+    </div>
+    """
+  end
+
   @spec input(assigns()) :: Phoenix.LiveView.Rendered.t()
   def input(assigns) do
     ~H"""
@@ -52,7 +84,7 @@ defmodule BeesWeb.Admin.Live.Components.Form do
         </span>
       </label> 
       <%= render_slot(@inner_block) %>
-      <label class={"label"}>
+      <label class="label">
         <span class="label-text-alt h-3">
           <%= error_tag @form, @field %> 
         </span>

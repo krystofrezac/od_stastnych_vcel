@@ -10,8 +10,14 @@ const formInput = {
 
     const isErrorHidden = error.classList.contains("phx-no-feedback") 
 
-    if(!isErrorHidden)
-      input.classList.add("input-error")
+    const nodeName = input.nodeName
+
+    if(!isErrorHidden){
+      if(nodeName == "INPUT")
+        input.classList.add("input-error")
+      if(nodeName == "TEXTAREA")
+        input.classList.add("textarea-error")
+    }
   }
 }
 export default formInput;
