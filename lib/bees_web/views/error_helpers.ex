@@ -5,6 +5,8 @@ defmodule BeesWeb.ErrorHelpers do
 
   use Phoenix.HTML
 
+  alias Phoenix.LiveView.JS
+
   @doc """
   Generates tag for inlined form input errors.
   """
@@ -12,10 +14,17 @@ defmodule BeesWeb.ErrorHelpers do
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
       content_tag(:span, translate_error(error),
-        class: "invalid-feedback",
-        phx_feedback_for: input_name(form, field)
+        class: "invalid-feedback transition-opacity opacity-0",
+        id: "error-#{form.id}-#{field}",
+        phx_feedback_for: input_name(form, field),
+        phx_hook: "on_mount_exec_js",
+        "on-mount-js": show_error_tag()
       )
     end)
+  end
+
+  defp show_error_tag do
+    JS.add_class("opacity-100", to: ".invalid-feedback")
   end
 
   @doc """
