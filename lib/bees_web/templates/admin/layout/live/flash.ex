@@ -32,6 +32,12 @@ defmodule BeesWeb.Admin.LayoutView.Flash do
   defp main(assigns) do
     ~H"""
     <%= if live_flash(@flash, @type) do %>
+      <div
+        id={"alert-close-hook-#{@type}"}
+        phx-hook="exec_js_after"
+        after="5000"
+        after-js={close(@type)}
+      />
       <div 
         id={"alert-#{@type}"} 
         class={"alert alert-#{@type} mt-4 transition-all h-16 h-0 p-0 m-0 mt-0"} 
@@ -54,9 +60,10 @@ defmodule BeesWeb.Admin.LayoutView.Flash do
   end
 
   defp close(type) do
-    JS.remove_class("opacity-100", to: "#alert-content-#{type}")
+    JS.remove_class("opacity-100", to: "#alert-content-#{type}", transition: "_")
     |> JS.add_class("h-0 p-0 m-0 mt-0", to: ".alert-#{type}", transition: "_", time: 150)
     |> JS.add_class("hidden", to: ".alert-#{type}", transition: "_", time: 300)
+    |> JS.push("close_flash", value: %{type: type})
   end
 
   defp open(type) do

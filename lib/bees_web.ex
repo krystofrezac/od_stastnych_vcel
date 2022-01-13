@@ -92,6 +92,11 @@ defmodule BeesWeb do
         layout: {BeesWeb.Admin.LayoutView, "live.html"}
 
       unquote(view_helpers())
+
+      @impl Phoenix.LiveView
+      def handle_event("close_flash", %{"type" => type}, socket) do
+        {:noreply, clear_flash(socket, type)}
+      end
     end
   end
 
