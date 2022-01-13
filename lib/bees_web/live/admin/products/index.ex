@@ -6,6 +6,7 @@ defmodule BeesWeb.Admin.Live.Products.Index do
   import Ecto.Changeset
 
   alias Bees.Products
+  alias Bees.Images
 
   alias BeesWeb.Admin.Live.Components.Card
   alias BeesWeb.Admin.Live.Components.Modal
@@ -25,6 +26,11 @@ defmodule BeesWeb.Admin.Live.Products.Index do
       |> assign(:add_product, false)
       |> assign(:edit_product, nil)
       |> assign(:delete_product, nil)
+      |> assign(:deleted_images, [])
+      |> allow_upload(:image,
+        accept: Images.accepted_formats(),
+        max_entries: 10
+      )
     }
   end
 
@@ -43,8 +49,10 @@ defmodule BeesWeb.Admin.Live.Products.Index do
 
   @impl Phoenix.LiveView
   def handle_event("add_product_submit", %{"add_product" => params}, socket) do
+    images = get_uploaded_images(socket)
+
     with {:ok, product_data} <- normalize_product(params) |> apply_action(:submit),
-         {:ok, product} <- Products.add_product(product_data) do
+         {:ok, product} <- Products.add_product(Map.put(product_data, :images, images)) do
       {
         :noreply,
         socket
@@ -78,14 +86,37 @@ defmodule BeesWeb.Admin.Live.Products.Index do
 
   @impl Phoenix.LiveView
   def handle_event("edit_product_submit", %{"edit_product" => params}, socket) do
+    images = get_uploaded_images(socket) ++ socket.assigns.edit_product.images
+
+    deleted_images =
+      images
+      |> Enum.filter(fn image ->
+        image.id in socket.assigns.deleted_images
+      end)
+
+    images =
+      images
+      |> Enum.filter(fn image ->
+        !(image.id in socket.assigns.deleted_images)
+      end)
+
+    Enum.each(deleted_images, fn image ->
+      Images.delete_file(image)
+    end)
+
     with {:ok, product_data} <-
            normalize_product(params) |> apply_action(:submit),
-         {:ok, product} <- Products.update_product(socket.assigns.edit_product, product_data) do
+         {:ok, product} <-
+           Products.update_product(
+             socket.assigns.edit_product,
+             Map.put(product_data, :images, images)
+           ) do
       {
         :noreply,
         socket
         |> assign(:edit_product, nil)
         |> assign(:products, Products.list_products())
+        |> assign(:deleted_images, [])
         |> put_flash(:info, "Produkt úspěšně upraven")
       }
     else
@@ -134,6 +165,7 @@ defmodule BeesWeb.Admin.Live.Products.Index do
       :noreply,
       socket
       |> assign(:edit_product, nil)
+      |> assign(:deleted_images, [])
     }
   end
 
@@ -169,11 +201,20 @@ defmodule BeesWeb.Admin.Live.Products.Index do
     }
   end
 
+  @impl Phoenix.LiveView
+  def handle_event("cancel-upload", %{"ref" => ref}, socket) do
+    {:noreply, cancel_upload(socket, :image, ref)}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("delete_image", %{"id" => id}, socket) do
+    {:noreply, socket |> update(:deleted_images, &[String.to_integer(id) | &1])}
+  end
+
   defp normalize_product(params) do
     types = %{
       name: :string,
       description: :string,
-      image: :string,
       home_page: :boolean,
       order: :integer
     }
@@ -181,5 +222,12 @@ defmodule BeesWeb.Admin.Live.Products.Index do
     {%{}, types}
     |> cast(params, Map.keys(types))
     |> validate_required(Map.keys(types))
+  end
+
+  defp get_uploaded_images(socket) do
+    consume_uploaded_entries(socket, :image, fn %{path: path}, entry ->
+      {:ok, image} = Images.add_image(path)
+      image
+    end)
   end
 end

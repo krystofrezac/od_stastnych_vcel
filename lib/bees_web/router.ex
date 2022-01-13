@@ -51,6 +51,7 @@ defmodule BeesWeb.Router do
       live "/users", Users.Index, :index
 
       live "/products", Products.Index, :index
+      live "/test", Test, :index
     end
   end
 

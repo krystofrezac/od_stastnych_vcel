@@ -56,7 +56,12 @@ defmodule Bees.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:husky, "~> 1.0", only: :dev, runtime: false},
-      {:hackney, "~> 1.18"}
+      {:hackney, "~> 1.18"},
+      {:waffle, "~> 1.1"},
+      {:ex_aws, "~> 2.1.2"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:sweet_xml, "~> 0.6"},
+      {:waffle_ecto, "~> 0.0.11"}
     ]
   end
 

@@ -3,6 +3,7 @@
   changeset={@add_changeset}
   action="add"
   text="Přidat produkt"
+  uploads={@uploads}
 />
 
 <ProductModal.main 
@@ -10,6 +11,9 @@
   changeset={@edit_changeset}
   action="edit"
   text="Upravit produkt"
+  uploads={@uploads}
+  product={@edit_product}
+  deleted_images={@deleted_images}
 />
 
 <Modal.main open={@delete_product}>
@@ -54,24 +58,29 @@
           <td> <%= product.order %> </td>
           <td> <%= if product.home_page, do: "Ano", else: "Ne" %> </td>
           <Table.actions>
+            <%= live_patch to: Routes.product_index_path(@socket, :index, id: product.id) do %>
+              <Table.action 
+                tooltip="Zobrazit produkt"
+                type="success"
+                icon="eye"
+                phx-value-product={product.id}
+                phx-click="open_edit_product"
+              />
+            <% end %>
             <Table.action 
               tooltip="Upravit produkt"
               type="info"
               icon="pencil"
               phx-value-product={product.id}
               phx-click="open_edit_product"
-            >
-              <Icons.pencil />
-            </Table.action>
+            />
             <Table.action 
               tooltip="Odstrnit produkt"
               type="error"
               icon="trash"
               phx-value-product={product.id}
               phx-click="open_delete_product"
-            >
-              <Icons.pencil />
-            </Table.action>
+            />
           </Table.actions>
         </tr>
       <% end  %>
