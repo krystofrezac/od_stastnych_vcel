@@ -26,8 +26,8 @@ defmodule BeesWeb.Admin.Live.Products.ProductModal do
     ~H"""
     <Modal.main 
       id={@action}
-      open={@open}
       on_close={on_close}
+      open={@open}
     >
       <:title>
         <%= @text %>

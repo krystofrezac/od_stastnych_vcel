@@ -1,34 +1,34 @@
-<ProductModal.main 
-  open={@add_product}
-  changeset={@add_changeset}
-  action="add"
-  text="Přidat produkt"
-  uploads={@uploads}
-/>
+  <ProductModal.main 
+    open={@add_product}
+    changeset={@add_changeset}
+    action="add"
+    text="Přidat produkt"
+    uploads={@uploads}
+  />
 
-<ProductModal.main 
-  open={@edit_product}
-  changeset={@edit_changeset}
-  action="edit"
-  text="Upravit produkt"
-  uploads={@uploads}
-  product={@edit_product}
-  deleted_images={@deleted_images}
-/>
+  <ProductModal.main 
+    open={@edit_product}
+    changeset={@edit_changeset}
+    action="edit"
+    text="Upravit produkt"
+    uploads={@uploads}
+    product={@edit_product}
+    deleted_images={@deleted_images}
+  />
 
-<Modal.main open={@delete_product}>
-  <:title>
-    Doopravdy chcete odstranit produkt?
-  </:title>
-  <Modal.actions>
-    <button class="btn" phx-click="close_delete_product">
-      Zrušit
-    </button>
-    <button class="btn btn-error" phx-click="submit_delete_product">
-      Odstranit produkt
-    </button>
-  </Modal.actions>
-</Modal.main>
+  <Modal.main open={@delete_product} id="delete">
+    <:title>
+      Doopravdy chcete odstranit produkt?
+    </:title>
+    <Modal.actions>
+      <button class="btn" phx-click="close_delete_product">
+        Zrušit
+      </button>
+      <button class="btn btn-error" phx-click="submit_delete_product">
+        Odstranit produkt
+      </button>
+    </Modal.actions>
+  </Modal.main>
 
 <Card.with_shadow>
   <:top_actions>

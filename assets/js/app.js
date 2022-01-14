@@ -25,11 +25,13 @@ import topbar from "../vendor/topbar"
 import formInputHook from "./hooks/formInput"
 import onMountExecJS from "./hooks/onMountExecJS.js"
 import execJSAfter from "./hooks/execJSAfter.js"
+import execJS from "./hooks/execJS.js"
 
 let hooks={};
 hooks["form_input"] = formInputHook;
 hooks["on_mount_exec_js"] = onMountExecJS;
 hooks["exec_js_after"] = execJSAfter;
+hooks["exec_js"] = execJS;
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
