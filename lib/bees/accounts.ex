@@ -85,7 +85,7 @@ defmodule Bees.Accounts do
           {:ok, User.t()} | {:error, Ecto.Changeset.t()}
   @dialyzer {:no_match, register_user: 2}
   def register_user(attrs, login_url) do
-    password = for _ <- 1..12, into: "", do: <<Enum.random('0123456789abcdef')>>
+    password = for _index <- 1..12, into: "", do: <<Enum.random('0123456789abcdef')>>
 
     attrs = Map.put(attrs, "password", password)
 
@@ -262,7 +262,7 @@ defmodule Bees.Accounts do
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
-      {:error, :user, changeset, _} -> {:error, changeset}
+      {:error, :user, changeset, _response} -> {:error, changeset}
     end
   end
 
@@ -384,7 +384,7 @@ defmodule Bees.Accounts do
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
-      {:error, :user, changeset, _} -> {:error, changeset}
+      {:error, :user, changeset, _response} -> {:error, changeset}
     end
   end
 
