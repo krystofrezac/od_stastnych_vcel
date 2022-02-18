@@ -12,6 +12,6 @@
     "deploy": "NODE_ENV=production tailwindcss --postcss --minify --input=css/public.css --output=../priv/static/assets/public.css --config=tailwind.public.config.js && NODE_ENV=production tailwindcss --postcss --minify --input=css/admin.css --output=../priv/static/assets/admin.css --config=tailwind.admin.config.js"
   },
   "dependencies": {
-    "daisyui": "^2.0.2"
+    "daisyui": "^2.0.9"
   }
 }
