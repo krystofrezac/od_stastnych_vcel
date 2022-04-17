@@ -3,8 +3,8 @@ updates:
   - package-ecosystem: "mix"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
   - package-ecosystem: "npm"
     directory: "/assets"
     schedule:
-      interval: "daily"
+      interval: "monthly"
